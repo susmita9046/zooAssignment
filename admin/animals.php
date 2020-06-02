@@ -81,7 +81,7 @@
                     <tr class="text-muted">
                       <th>S.N</th>
                       <th>Animal Category</th>
-                      <th> Species name</th>
+                      <th>Name</th>
                       <!-- <th>Animal name</th> -->
                       <th>DateOfBirth</th>
                       <th>Gender</th>
@@ -104,7 +104,7 @@
                       <tr>
                          <td><?php echo $i++; ?></td> 
                         <td><?php echo $Animal['categoryName'] ?></td>
-                        <td><?php echo $Animal['species_name'];?></td>
+                        <td><?php echo $Animal['name'];?></td>
                         
                         <td><?php echo $Animal['date_of_birth'];?></td>
                         <td><?php echo $Animal['gender'];?></td>
@@ -114,7 +114,7 @@
                         <td><?php echo $Animal['natural_habitat'];?></td>
                         <td><?php echo $Animal['global_population'];?></td>
                         <td><?php echo $Animal['date_of_joined'];?></td>
-                        <td><?php echo $Animal['image'];?></td>
+                        <td><img src="../uploads/<?php echo $Animal['image'];?>" width="40" height="30"></td>
 
                         <td>
                         <a href="editanimals.php?eid=<?php echo $Animal['a_id'];?>" class="btn btn-info btn-sm">Edit</a>

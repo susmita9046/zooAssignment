@@ -15,10 +15,10 @@
 </head>
 <body>
 	<!--header-->
-	<div class="header">
+	<div class="header" style="background-color: lightblue !important">
 		<div class="container">
-			<div class="header-top">
-				<nav class="navbar navbar-default">
+			<div class="header-top" style="background-color: lightblue">
+				<nav class="navbar navbar-default" style="background-color: lightblue; border: none;">
 					<div class="container">
 						
 						<!-- Brand and toggle get grouped for better mobile display -->

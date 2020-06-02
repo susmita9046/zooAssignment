@@ -1,5 +1,6 @@
 <?php
-require '../admin/db/conn.php';
+require 'constants.php';
+require 'admin/db/conn.php';
  $eventList = $pdo->prepare("select * from event");
   $eventList->execute();
 ?>
@@ -37,59 +38,41 @@ require '../admin/db/conn.php';
 	<!-- welcome -->
 	<div class="welcome">
 		<div class="content">
-	
-		<div class="container">
-			<h2>welcome to zoo planet</h2>
-			<div class="filtersec">
-             <div class="col-md-9" >
-             	<ul class="categorylist">
-             		<li id="reptiles" class="active">Reptiles / Amphibians</li>
-             		<li id="fishes">Fishes</li>
-             		<li id="mammals">Mammals</li>
-             		<li id="birds">Birds</li>
-             	</ul>
-             </div>
-             <div class ="col-md-3">
-<form method="post" action="">
-    <input class="form-control" type="text" name="keyword" placeholder="Search Here">
-</form>
-        </div>
-    </div>
+			<div class="container">
+				<h2>welcome to zoo planet</h2>
+				<div class="filtersec">
+		            <div class="col-md-9" >
+		             	<ul class="categorylist">
+		             		<?php 
+							$cat = $pdo->prepare('select * from animal_category');
+							$cat->execute();
+							foreach($cat as $row) {?>
+		             			<li style="cursor:pointer" onclick="getAnimals(<?php echo $row['ac_id']?>)"><?php echo $row['type'];?></li>
+		             		<?php }?>
+		             	</ul>
+		            </div>
+            	<div class ="col-md-3">
+					<form method="post" action="">
+		    			<input class="form-control" type="text" name="keyword" placeholder="Search Here">
+					</form>
+        		</div>
+    		</div>
 			<div class="welcome-grids">
-				<div class="col-md-3 welcome-grid">
-					<img src="images/p1.jpg" alt=" " class="img-responsive" />
-					<div class="wel-info">
-						<h4>Assumenda est</h4>
-						<p>Masagni dolores eoquie voluptate msequi nesciunt. Nique porro quisquam est qui dolorem ipsumquia dolor sitamet consectet, adipisci unumquam eius.</p>
-						<div class="text-center">
-                        <button class="btn viewbtn" onclick="popUpCar('<?php echo $evenT['e_id'];?>')">
-                          VIEW MORE
-                        </button>
-                      </div>
+				<?php 
+				$animals = $pdo->prepare('select * from animals where animalcategoryId = ' . MAMMALS);
+				$animals->execute();
+				foreach($animals as $row) {?>
+					<div class="col-md-3 welcome-grid">
+						<img src="uploads/<?php echo $row['image'];?>" alt=" " class="img-responsive" />
+						<div class="wel-info">
+							<h4><?php echo $row['name'];?></h4>
+							<h4><?php echo $row['date_of_birth'];?></h4>
+							<div>
+								<a href="animaldisplay.php?id=<?php echo $row['a_id'];?>" class="btn viewbtn">VIEW MORE</a>
+							</div>
+						</div>
 					</div>
-
-				</div>
-				<div class="col-md-3 welcome-grid">
-					<img src="images/p2.jpg" alt=" " class="img-responsive" />
-					<div class="wel-info">
-						<h4>Assumenda est</h4>
-						<p>Masagni dolores eoquie voluptate msequi nesciunt. Nique porro quisquam est qui dolorem ipsumquia dolor sitamet consectet, adipisci unumquam eius.</p>
-					</div>
-				</div>
-				<div class="col-md-3 welcome-grid">
-					<img src="images/p3.jpg" alt=" " class="img-responsive" />
-					<div class="wel-info">
-						<h4>Assumenda est</h4>
-						<p>Masagni dolores eoquie voluptate msequi nesciunt. Nique porro quisquam est qui dolorem ipsumquia dolor sitamet consectet, adipisci unumquam eius.</p>
-					</div>
-				</div>
-				<div class="col-md-3 welcome-grid">
-					<img src="images/p4.jpg" alt=" " class="img-responsive" />
-					<div class="wel-info">
-						<h4>Assumenda est</h4>
-						<p>Masagni dolores eoquie voluptate msequi nesciunt. Nique porro quisquam est qui dolorem ipsumquia dolor sitamet consectet, adipisci unumquam eius.</p>
-					</div>
-				</div>
+				<?php }?>
 				<div class="clearfix"></div>
 			</div>
 		</div>
@@ -166,3 +149,20 @@ require '../admin/db/conn.php';
 <!--events ends-->
 				
 <?php require 'includes/footer.php'; ?>
+
+
+<script type="text/javascript">
+	function getAnimals(id){
+		var xmlHttp = new XMLHttpRequest();
+		xmlHttp.open('GET', 'ajax/ajaxanimal.php?id=' + id, true);
+		xmlHttp.send();
+
+		if(xmlHttp.onreadystatechange = function(){
+			if(xmlHttp.readyState == 4){
+				// document.getElementsByClassName('welcome-grids')[0].innerHTML = xmlHttp.reponseText;
+				$('.welcome-grids').html(xmlHttp.responseText);
+				// alert(xmlHttp.responseText);
+			}
+		});
+	}
+</script>

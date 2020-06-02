@@ -19,7 +19,7 @@ if(isset($_FILES['image'])){
                 event(event_name,image,date_of_event,end_of_event,location,description) values(:event_name,:image,:date_of_event,:end_of_event,:location,:description)");
         // $_POST['userId']= $_SESSION['aUserId'];
         unset($_POST['save']);
-        $_POST['image'] = $image;
+         $_POST['image'] = $image;
         
         // echo '<pre>'; print_r($_POST); die();
         $stmt->execute($_POST);

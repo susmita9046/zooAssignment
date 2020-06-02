@@ -4,7 +4,7 @@ if(!isset($_SESSION['UserId'])){
 header('Location:login.php');
     }
 
-require '../admin/db/conn.php';
+require 'admin/db/conn.php';
 $contacts = $pdo->prepare('SELECT * FROM contact');
 $contacts->execute();
 
@@ -15,7 +15,7 @@ if(isset($_POST['save'])){
         unset($_POST['save']);
         // echo '<pre>'; print_r($_POST); die();
         $stmt->execute($_POST);
-        // header('Location:contact.php?success=Events Added Successfully');
+        header('Location:contact.php?success=Events Added Successfully');
     }
 ?>
 <?php require 'includes/header.php'; ?>

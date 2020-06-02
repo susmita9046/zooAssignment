@@ -1,5 +1,5 @@
 <?php
-require '../admin/db/conn.php';
+require 'admin/db/conn.php';
 $error='';
 if(isset($_POST['register'])){
     

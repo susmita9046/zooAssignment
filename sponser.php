@@ -3,7 +3,7 @@ session_start();
   if(!isset($_SESSION['UserId'])){
     header('Location:login.php');
   }
-require '../admin/db/conn.php';
+require 'admin/db/conn.php';
 $sponsercat = $pdo->prepare("select * from sponsership");
 $sponsercat->execute();
 $image ="";

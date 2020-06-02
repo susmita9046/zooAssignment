@@ -7,20 +7,26 @@ require 'db/conn.php';
 $animalTypeList = $pdo->prepare('SELECT * FROM animal_category');
 $animalTypeList->execute();
 
-$image ="";
 if(isset($_POST['save'])){
-     if(isset($_FILES['image'])){
+     
+    // image updoad
+    if(isset($_FILES['image'])){
             $image = $_FILES['image']['name'];
             $tmp_loc = $_FILES['image']['tmp_name'];
-            $perm_loc = 'image/' . $image;
+            $perm_loc = '../uploads/' . $image;
             copy($tmp_loc, $perm_loc);
-        }
+    }
+    else{
+         $image = '';
+    }
+    // image upload ends
+
     $stmt = $pdo->prepare("insert into 
             animals(animalcategoryId,species_name,name,date_of_birth,gender,avg_life_span,species_category,dietary,natural_habitat,global_population,date_of_joined,dimension,image,gestational_period,mammal_category,avg_body_temp,reproduction_type,avg_clutch_size,avg_offspring,nest_const_metd,aclutch_size,wing_span,ability_to_fly,birds_color_variant,fish_avg_body_temp,water_type,fishes_color_variant) values(:animalcategoryId,:species_name,:name, :date_of_birth,:gender,:avg_life_span, :species_category,:dietary,:natural_habitat,:global_population,:date_of_joined,:dimension,:image,:gestational_period,:mammal_category,:avg_body_temp,:reproduction_type,:avg_clutch_size,:avg_offspring,:nest_const_metd,:aclutch_size,:wing_span,:ability_to_fly,:birds_color_variant,:fish_avg_body_temp,:water_type,:fishes_color_variant)");
 
     unset($_POST['save']);
     $_POST['image'] = $image;
-     echo '<pre>'; print_r($_POST); die();
+     // echo '<pre>'; print_r($_POST); die();
     $stmt->execute($_POST);
     header('Location:animals.php?success=Animals Added Successfully');
 }
@@ -79,7 +85,7 @@ if(isset($_POST['save'])){
                 <h4 class="text-muted mb-2">Add Animal Type</h4>
                 <hr>
                 
-                <form method="POST" action="" class="col-xl-6">
+                <form method="POST" action="" class="col-xl-6" enctype="multipart/form-data">
                     <div class="form-group">
                         <label>Select Animal Type</label>
                         <select name="animalcategoryId" id="animalcategoryId" class="form-control grey-glow">
