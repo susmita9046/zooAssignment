@@ -1,7 +1,7 @@
 <?php 
   session_start();
   if(isset($_SESSION['UserId'])){
-    header('Location:index.php');
+    header('Location:userhomepage.php');
   }
 require '../admin/db/conn.php';
 if(isset($_POST['login'])){
@@ -15,7 +15,7 @@ if(isset($_POST['login'])){
       $user = $stmt->fetch();
       if(password_verify($_POST['password'],$user['password'])){
         $_SESSION['UserId'] = $user['u_id'];
-        header('Location:userprofile.php');
+        header('Location:userhomepage.php');
       }else{
         header('Location:login.php');
       }

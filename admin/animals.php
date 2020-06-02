@@ -4,8 +4,7 @@
   header('Location:login.php');
   }
   require 'db/conn.php';
-  // $animal = $pdo->prepare("select * from animals");
-  // type
+
   $animal = $pdo->prepare("select animals.*, animal_category.type as categoryName
                             from animals 
                             JOIN animal_category ON animals.animalcategoryId  = animal_category.ac_id

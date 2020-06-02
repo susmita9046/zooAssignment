@@ -356,6 +356,8 @@ span.glyphicon.glyphicon-user:hover {
     color: #ff9541;
 }
 .events {
+   display: flex;
+  
     padding: 4em 0;
    text-align:center;
    background-color: #eee;

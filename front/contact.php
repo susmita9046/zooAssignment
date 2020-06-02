@@ -1,3 +1,23 @@
+<?php
+session_start();
+if(!isset($_SESSION['UserId'])){
+header('Location:login.php');
+    }
+
+require '../admin/db/conn.php';
+$contacts = $pdo->prepare('SELECT * FROM contact');
+$contacts->execute();
+
+if(isset($_POST['save'])){
+        $stmt = $pdo->prepare("insert into 
+                contacts(username,email,phone_number,subject,message) values(:username,:email,:phone_number,:subject,:message)");
+        // $_POST['userId']= $_SESSION['aUserId'];
+        unset($_POST['save']);
+        // echo '<pre>'; print_r($_POST); die();
+        $stmt->execute($_POST);
+        // header('Location:contact.php?success=Events Added Successfully');
+    }
+?>
 <?php require 'includes/header.php'; ?>
 	
 <div class="banner-header">
@@ -18,12 +38,15 @@
 		 			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt dolor et tristique bibendum. Aenean sollicitudin vitae dolor ut posuere.</p>
 				  	<form>
 					 	<div class="form_details">
-					        <input type="text" class="text" value="Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}">
-							<input type="text" class="text" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}">
-							<input type="text" class="text" value="Subject" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Subject';}">
-							<textarea onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Message';}">Message</textarea>
+					 		<form class="form-signin" autocomplete="off" method="post" action="">
+					        <input type="text" class="text" name="username" placeholder="User Name" required="" autofocus="" />
+					        <input type="text" class="text" name="email" placeholder="Email" required="" autofocus="" />
+					        <input type="text" class="text" name="phone_number" placeholder="Phone Number" required="" autofocus="" />
+					        <input type="text" class="text" name="subject" placeholder="Subject" required="" autofocus="" />
+					        <textarea name="messsage" placeholder="Message" class="text" rows="5"></textarea>
+                            <br> 
 							<div class="clearfix"> </div>
-						 	<div class="sub-button"><input type="submit" value="Send message"></div>
+						 	<div class="sub-button"><input type="submit" name="save" value="Send message"></div>
 					  	</div>
 				  	</form>
 		 		</div>
@@ -32,7 +55,7 @@
 					<h3>Contact Info</h3>
 					 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit velit justo.</p>
 	      			<address>
-							 <p>Email : <a href="mailto:example@mail.com">example@mail.com</a></p>
+						 <p>Email : <a href="mailto:example@mail.com">example@mail.com</a></p>
 						 <p>Phone : 1.306.222.4545</p>
 						 <p>222 2nd Ave South</p>
 						 <p>Saskabush, SK   S7M 1T6</p>

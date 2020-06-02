@@ -1,3 +1,9 @@
+<?php
+require '../admin/db/conn.php';
+ $eventList = $pdo->prepare("select * from event");
+  $eventList->execute();
+?>
+
 <?php require 'includes/header.php'; ?>
 	
 <!-- header banner -->
@@ -55,7 +61,13 @@
 					<div class="wel-info">
 						<h4>Assumenda est</h4>
 						<p>Masagni dolores eoquie voluptate msequi nesciunt. Nique porro quisquam est qui dolorem ipsumquia dolor sitamet consectet, adipisci unumquam eius.</p>
+						<div class="text-center">
+                        <button class="btn viewbtn" onclick="popUpCar('<?php echo $evenT['e_id'];?>')">
+                          VIEW MORE
+                        </button>
+                      </div>
 					</div>
+
 				</div>
 				<div class="col-md-3 welcome-grid">
 					<img src="images/p2.jpg" alt=" " class="img-responsive" />
@@ -117,27 +129,38 @@
 <div class="events">
 	<div class="container">
 		<h3>events</h3>
-		<div class="events-grids">
-			<div class="col-md-3 event-grid">
+         <!-- <div class = "row"> -->
+        <div class="events-grids">
+        <div class = "col-md-12 ">
+          
+           <?php 
+            if($eventList->rowCount() > 0){
+              foreach ($eventList as $evenT) {?>
+                <!-- list car -->
+                <!-- <div class="col-md-3 ">
+                  <div class="card info" style="color:black;">   -->    
+                  <div class="col-md-3 event-grid">
 				<a href="#" class="mask">
-				<img src="images/e1.jpg" class="img-responsive zoom-img" alt=""></a>
+				<img src ="http://localhost/zooassignment/admin/image/<?php echo $evenT['image'];?>"></a>
+			    </div>             
+                    <div class="col-md-3 event-grid1">
+				<h4><?php echo $evenT['event_name'] ?></h4>
+				<h5><?php echo $evenT['date_of_event'];?></h5>
+				<h5><?php echo $evenT['location'];?></h5>
+				<p><?php echo $evenT['description'];?></p>
 			</div>
-			<div class="col-md-3 event-grid1">
-				<h4>Mauris non magna ul </h4>
-				<h5>19-aug-2015</h5>
-				<p>Fusce feugiat malesuada odio. Morbi orci. Donec sit amet eros. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Mauris fermentum dictum magna.</p>
-			</div>
-			<div class="col-md-3 event-grid">
-				<a href="#" class="mask">
-				 <img src="images/e2.jpg" class="img-responsive zoom-img" alt=""></a>
-			</div>
-			<div class="col-md-3 event-grid1">
-				<h4>Mauris non magna ul </h4>
-				<h5>25-sep-2014</h5>
-				<p>Fusce feugiat malesuada odio. Morbi orci. Donec sit amet eros. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Mauris fermentum dictum magna.</p>
-			</div>
-			<div class="clearfix"></div>
-		</div>
+                    
+                  </div>
+                </div>
+               </div> 
+                <!-- list car ends -->
+             <?php }
+            }else{?>
+              <div>Soory we couldnot find animals you are searching.</div>
+            <?php }?>
+          </div>
+        </div>
+      </div>
 	</div>
 </div>
 <!--events ends-->
