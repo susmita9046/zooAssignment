@@ -1,12 +1,25 @@
 <?php
 require 'constants.php';
 require 'admin/db/conn.php';
- $eventList = $pdo->prepare("select * from event");
+  $eventList = $pdo->prepare("select * from event");
   $eventList->execute();
-?>
 
+if(isset($_POST['keyword'])){
+    $animals = $pdo->prepare("SELECT animals.*, animal_category.type as categoryName FROM animals JOIN animal_category ON animals.animalcategoryId = animal_category.ac_id 
+        WHERE 
+            animals.status = 'Yes' 
+            AND (animal_category.type like '%" . $_POST['keyword'] . "%' OR 
+            animals.name like '%" . $_POST['keyword'] .  "%' OR
+            animals.species_name like '%" . $_POST['keyword'] .  "%' OR 
+            animals.gender like '%" . $_POST['keyword'] .  "%' OR 
+            animals.dietary like '%" . $_POST['keyword'] .  "%' OR 
+            animals.global_population like '%" . $_POST['keyword'] .  "%' OR 
+            animals.date_of_joined like '%" . $_POST['keyword'] .  "%' OR 
+            animals.gestational_period like '%" . $_POST['keyword'] . "%')");
+$animals->execute();
+}
+?>
 <?php require 'includes/header.php'; ?>
-	
 <!-- header banner -->
 <div class="header-banner">
 	<div class="container">
@@ -77,33 +90,7 @@ require 'admin/db/conn.php';
 			</div>
 		</div>
 	</div>
-	<!--welcome ends-->
 	
-	<!--feature-->
-	<!-- <div class="feature">
-		<div class="container">
-			<h3>Our Features</h3>
-			<div class="feature-grids">
-				<div class="col-md-4 feature-grid">
-					<span class="glyphicon glyphicon-camera" aria-hidden="true"></span>
-					<h4>Earum Rerum</h4>
-					<p>Masagni dolores eoquie voluptate msequi nesciunt. Nique porro quisquam est qui dolorem ipsumquia dolor sitamet consectet, adipisci unumquam eius.</p>
-				</div>
-				<div class="col-md-4 feature-grid">
-					<span class="glyphicon glyphicon-facetime-video" aria-hidden="true"></span>
-					<h4>Itaque Earum</h4>
-					<p>Masagni dolores eoquie voluptate msequi nesciunt. Nique porro quisquam est qui dolorem ipsumquia dolor sitamet consectet, adipisci unumquam eius.</p>
-				</div>
-				<div class="col-md-4 feature-grid">
-					<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-					<h4>Assumenda est</h4>
-					<p>Masagni dolores eoquie voluptate msequi nesciunt. Nique porro quisquam est qui dolorem ipsumquia dolor sitamet consectet, adipisci unumquam eius.</p>
-				</div>
-				<div class="clearfix"></div>
-			</div>
-		</div>
-	</div> -->
-	<!--feature ends-->
 </div>
 <!--content ends-->
 
