@@ -9,19 +9,23 @@ $sponsercat->execute();
 $image ="";
 if(isset($_POST['save'])){
 if(isset($_FILES['image'])){
-    
             $image = $_FILES['image']['name'];
             $tmp_loc = $_FILES['image']['tmp_name'];
-            $perm_loc = 'image/' . $image;
+            $perm_loc = '../uploads/' . $image;
             copy($tmp_loc, $perm_loc);
-        }
+    }
+    else{
+         $image = '';
+    }
         $stmt = $pdo->prepare("insert into 
-                event(event_name,image,date_of_event,end_of_event,location,description) values(:event_name,:image,:date_of_event,:end_of_event,:location,:description)");
+                sponsership_form(image,company_name,exiting_customer,primary_phone_number,sec_phone_number,contact_details,animal_sponser_name ,sponsershipCat,start_date_spon,total,signature_area) values(:image,:company_name,:exiting_customer,:primary_phone_number,:sec_phone_number,:contact_details,:animal_sponser_name,:,:sponsershipCat,:start_date_spon,:total,:signature_area)");
         // $_POST['userId']= $_SESSION['aUserId'];
         unset($_POST['save']);
          $_POST['image'] = $image;
         
         // echo '<pre>'; print_r($_POST); die();
+         print_r($arr); 
+
         $stmt->execute($_POST);
         header('Location:event.php?success=Events Added Successfully');
     }
@@ -59,7 +63,7 @@ if(isset($_FILES['image'])){
 	 			<div class="col-md-5 contact_left" style="float: none; margin: 0 auto"> -->
 		 			
 				  	<div class="wrapper">
-                    <form class="form-signin" autocomplete="off" method="post" action="">
+                    <form class="form-signin" method="POST" action="" enctype="multipart/form-data">
                     <h3 class="form-signin-heading text-center">sponser form</h3>
                     <label>Add Image</label>
                     <input type="file" class="form-control-file" name="image">

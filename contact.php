@@ -10,12 +10,13 @@ $contacts->execute();
 
 if(isset($_POST['save'])){
         $stmt = $pdo->prepare("insert into 
-                contacts(username,email,phone_number,subject,message) values(:username,:email,:phone_number,:subject,:message)");
-        // $_POST['userId']= $_SESSION['aUserId'];
+                contact(username,email,phone_number,subject,message) values(:username,:email,:phone_number,:subject,:message)");
+       
         unset($_POST['save']);
-        // echo '<pre>'; print_r($_POST); die();
+         // echo '<pre>'; print_r($_POST); die();
         $stmt->execute($_POST);
-        header('Location:contact.php?success=Events Added Successfully');
+        // hader('Location:contact.php?success=contacts Added Successfully');
+        echo "contact added Successfully";
     }
 ?>
 <?php require 'includes/header.php'; ?>
@@ -36,19 +37,32 @@ if(isset($_POST['save'])){
 	 			<div class="col-md-8 contact_left">
 		 			<h3>Contact Form</h3>
 		 			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt dolor et tristique bibendum. Aenean sollicitudin vitae dolor ut posuere.</p>
-				  	<form>
-					 	<div class="form_details">
-					 		<form class="form-signin" autocomplete="off" method="post" action="">
-					        <input type="text" class="text" name="username" placeholder="User Name" required="" autofocus="" />
-					        <input type="text" class="text" name="email" placeholder="Email" required="" autofocus="" />
-					        <input type="text" class="text" name="phone_number" placeholder="Phone Number" required="" autofocus="" />
-					        <input type="text" class="text" name="subject" placeholder="Subject" required="" autofocus="" />
-					        <textarea name="messsage" placeholder="Message" class="text" rows="5"></textarea>
-                            <br> 
-							<div class="clearfix"> </div>
-						 	<div class="sub-button"><input type="submit" name="save" value="Send message"></div>
-					  	</div>
-				  	</form>
+
+				<form class="form-signin"  method="POST" action="" class="col-xl-6" enctype="multipart/form-data">
+	            <div class="form_details">
+	            <h3>Sponsership form</h3>
+           
+	              <br><br>
+	              <label>Name</label>
+	              <input name="username" class="form-control" required="" autofocus="" />
+	              <br>
+	              <label>Email</label>
+	              <input name="email" class="form-control" required="" autofocus="">
+	              <br>
+	              <label>Phone Number</label>
+	              <input name="phone_number" class="form-control" required="" autofocus="">
+	              <br>
+	              <label>Subject</label>
+	              <input name="subject" class="form-control" required="" autofocus="">
+	              <br>
+	              <label>Message</label>
+	              <input name="message" class="form-control" required="" autofocus="">
+	              <br>
+	          <div class="form-group">
+	              <input type="submit" name="save" class="btn btn-dark" value="Save">
+	              <a href="animaltype.php" class="btn btn-outline-dark ml-1"><i class="fa fa-close"></i> Back</a>
+	          </div>
+            </form>
 		 		</div>
 	    		<div class="col-md-4 company-right">
 			   		<div class="company_ad">

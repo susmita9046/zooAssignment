@@ -4,11 +4,14 @@ if(!isset($_SESSION['AUserId'])){
         header('Location:login.php');
 }
 require 'db/conn.php';
-    if(isset($_GET['aid'])){
-    $animals = $pdo->prepare('SELECT * FROM animals WHERE a_id = :aid');
-    $animals->execute($_GET);
-    $row = $animals->fetch();
-    }
+$animalTypeList = $pdo->prepare('SELECT * FROM animal_category');
+$animalTypeList->execute();
+
+if(isset($_GET['aid'])){
+$animals = $pdo->prepare('SELECT * FROM animals WHERE a_id = :aid');
+$animals->execute($_GET);
+$row = $animals->fetch();
+}
 if(isset($_POST['update'])){
     $stmt = $pdo->prepare("UPDATE animals SET animalcategoryId =:animalcategoryId,species_name =:species_name,name =:name,date_of_birth=:date_of_birth,gender =:gender,avg_life_span =:avg_life_span,species_category =:species_category,dietary =:dietary,natural_habitat =:natural_habitat,global_population =:global_population,date_of_joined =:date_of_joined,dimension =:dimension,image =:image,gestational_period =:gestational_period,mammal_category =:mammal_category,avg_body_temp =:avg_body_temp,reproduction_type =:reproduction_type,avg_clutch_size =:avg_clutch_size,avg_offspring =:avg_offspring,nest_const_metd =:nest_const_metd,aclutch_size =:aclutch_size,wing_span =:wing_span,ability_to_fly =:ability_to_fly,birds_color_variant =:birds_color_variant,fish_avg_body_temp =:fish_avg_body_temp,water_type =:water_type,fishes_color_variant =:fishes_color_variant
 
@@ -73,14 +76,15 @@ if(isset($_POST['update'])){
                 <hr>
                 
                 <form method="POST" action="" class="col-xl-6">
-                    <input type="hidden" name="ac_id" value="<?php echo $row['ac_id'];?>">
+                    <!-- <input type="hidden" name="a_id" value="<?php echo $row['a_id'];?>"> -->
+                    <input type="hidden" name="a_id" value="<?php echo $row['a_id'];?>">
                     <div class="form-group">
                         <label>Select Animal Type</label>
                         <select name="animalcategoryId" id="animalcategoryId" class="form-control grey-glow">
                             <option value="">Select One</option>
                             <?php 
                             foreach ($animalTypeList as $animaltype) {?>
-                                <option value="<?php echo $animaltype['ac_id'];?>"  <?php if($animaltype['ac_id'] == $row['animalcategoryId']) echo 'selected'; ?>>
+                                <option value="<?php echo $animaltype['ac_id'];?>" >
                                     <?php echo $animaltype['type'];?>
                                 </option>
                             <?php }?>
