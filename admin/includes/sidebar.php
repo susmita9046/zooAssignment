@@ -50,5 +50,10 @@
         <i class="fas fa-user-clock text-light fa-lg mr-3"></i>Manage Events
       </a>
     </li>
+    <li class="nav-item">
+    <a href="managecontact.php" class="nav-link text-white p-3 mb-2 sidebar-link">
+      <i class="fas fa-user-clock text-light fa-lg mr-3"></i>Manage Contact
+    </a>
+  </li>
   </ul>
 </div>

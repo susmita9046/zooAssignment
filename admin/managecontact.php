@@ -4,21 +4,24 @@
   header('Location:login.php');
   }
   require 'db/conn.php';
-  $animalTypeList = $pdo->prepare("select * from animal_category");
-  $animalTypeList->execute();
-  if(isset($_GET['did'])){
-    $animals = $pdo->prepare('select * from animals where ac_id = :did');
-    $animals ->execute($_GET);
-      if($animals->rowCount() == 0) {
-        $stmt = $pdo->prepare('DELETE FROM animal_category WHERE ac_id = :did');
+  // $animal = $pdo->prepare("select * from animals");
+  // type
+    $contacts = $pdo->prepare("select * from contact");
+    $contacts->execute();
+
+    if(isset($_GET['did'])){
+    $contacts = $pdo->prepare('select * from contacts where c_id = :did');
+    $contacts ->execute($_GET);
+      if($contacts->rowCount() == 0) {
+        $stmt = $pdo->prepare('DELETE FROM contact WHERE c_id = :did');
         $stmt->execute($_GET);
-        header('Location:animalType.php?success=AnimalCategory Deletted Successfully');
+        header('Location:managecontact.php?success=contact Deletted Successfully');
         }
         else{
         $_GET['success'] = 'Can not be deleted because there are Animals under this AnimalType';
             }
                          }
-?>
+ ?> 
 <!doctype html>
 <html lang="en">
   <head>
@@ -30,7 +33,7 @@
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <title>Manage Animal Types</title>
+    <title>Manage contact</title>
   </head>
   <body>
     
@@ -67,30 +70,36 @@
             <div class="row pt-md-5 mt-md-3 mb-5 align-items-center">
               <div class="col-xl-12 col-12 mb-4 mb-xl-0">
                 <div class="row">
-                  <div class="col-xl-6"><h4 class="text-muted mb-2">Staff Salary</h4></div>
-                  <div class="col-xl-6 text-right"><a href="addanimaltype.php" class="btn btn-info btn-sm">Add New</a></div>
+                  <div class="col-xl-6"><h4 class="text-muted mb-2">Manage Contact</h4></div>
+                  <!-- <div class="col-xl-6 text-right"><a href="addevent.php" class="btn btn-info btn-sm">Add New</a></div> -->
                 </div>
                 <table class="table table-striped bg-light text-center">
                   
                   <thead>
                     <tr class="text-muted">
                       <th>S.N</th>
-                      <th>Type Name</th>
-                      <th>description</th>
-                      <th>Action</th>
+                      <th>Username</th>
+                      <th>Email</th>
+                      <th>Phone Number</th>
+                      <th>Subject</th>
+                      <th>Message</th>
+                      
                     </tr>
                   </thead>
                        
                   <tbody>
                     <?php $i = 1; ?>
-                    <?php foreach ($animalTypeList as $type) {?>
+                    <?php foreach ($contacts as $contactt) {?>
                       <tr>
                         <td><?php echo $i++; ?></td>
-                        <td><?php echo $type['type'] ?></td>
-                        <td><?php echo $type['description'];?></td> 
+                        <td><?php echo $contactt['username'] ?></td>
+                        <td><?php echo $contactt['email'];?></td> 
+                        <td><?php echo $contactt['phone_number'];?></td> 
+                        <td><?php echo $contactt['subject'];?></td> 
+                        <td><?php echo $contactt['message'];?></td> 
                         <td>
-                        <a href="editAnimalType.php?eid=<?php echo $type['ac_id'];?>" class="btn btn-info btn-sm">Edit</a>
-                      
+                        <!-- <a href="editEvent.php?eid=<?php ;?>" class="btn btn-info btn-sm">Edit</a> -->
+                        <a href="managecontact.php?did=<?php echo $contactt['c_id'];?>" class="btn btn-danger btn-sm">Delete</a>
                         </td>
                       </tr>
                     <?php } ?>
@@ -115,9 +124,5 @@
     <script src="js/script.js"></script>
   </body>
 </html>
-
-
-
-
 
 

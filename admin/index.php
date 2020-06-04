@@ -3,6 +3,30 @@
   if(!isset($_SESSION['AUserId'])){
     header('Location:login.php');
   }
+   require 'db/conn.php';
+  $admins = $pdo->prepare('select * from user where type = 2');
+  $admins->execute();
+  $adminCount = $admins->rowCount();
+
+  $animalCategory = $pdo->prepare('select * from animal_category');
+  $animalCategory->execute();
+  $animalCount = $animalCategory->rowCount();
+
+  $animal = $pdo->prepare('select * from animals');
+  $animal->execute();
+  $animalCount = $animal->rowCount();
+
+  $users = $pdo->prepare('select * from user where type = 0');
+  $users->execute();
+  $userCount = $users->rowCount();
+
+  $events = $pdo->prepare('select * from event');
+  $events->execute();
+  $eventCount = $events->rowCount();
+
+  $contacts = $pdo->prepare('select * from contact');
+  $contacts->execute();
+  $contactCount = $contacts->rowCount();
 ?>
 <!doctype html>
 <html lang="en">
@@ -58,8 +82,13 @@
                     <div class="d-flex justify-content-between">
                       <i class="fas fa-users fa-3x text-success"></i>
                       <div class="text-right text-secondary">
-                        <h5>Client Users</h5>
-                        <h3>5</h3>
+                        <div>
+                        <a href="usermanage.php">
+                            <i class="fas fas"></i><br>
+                            <h5>User<h5>
+                            <h4><?php echo $userCount;?></h4>
+                        </a>
+                    </div>
                       </div>
                     </div>
                   </div>
@@ -72,8 +101,13 @@
                     <div class="d-flex justify-content-between">
                       <i class="fas fa-cat fa-3x text-success"></i>
                       <div class="text-right text-secondary">
-                        <h5>Animal Type</h5>
-                        <h3>4</h3>
+                        <div>
+                          <a href="animaltype.php">
+                          <i class="fas fas "></i><br>
+                          <h5>Animal Category</h5>
+                          <h4><?php echo $animalCount;?></h4>
+                        </a>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -86,8 +120,12 @@
                     <div class="d-flex justify-content-between">
                       <i class="fas fa-cat fa-3x text-success"></i>
                       <div class="text-right text-secondary">
-                        <h5>Total Animals</h5>
-                        <h3>40</h3>
+                          <a href="animals.php">
+                          <i class="fas fas "></i><br>
+                          <h5>Total Animals</h5>
+                          <h4><?php echo $animalCount;?></h4>
+                        </a>
+                        
                       </div>
                     </div>
                   </div>
@@ -114,8 +152,32 @@
                     <div class="d-flex justify-content-between">
                       <i class="fas fa-user-clock fa-3x text-success"></i>
                       <div class="text-right text-secondary">
-                        <h5>Events</h5>
-                        <h3>10</h3>
+                         <div>
+                          <a href="event.php">
+                          <i class="fas fas "></i><br>
+                          <h5>Total Events</h5>
+                          <h4><?php echo $eventCount;?></h4>
+                        </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+               <div class="col-xl-3 col-sm-6 p-2">
+                <div class="card card-common">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                      <i class="fas fa-user-clock fa-3x text-success"></i>
+                      <div class="text-right text-secondary">
+                         <div>
+                          <a href="managecontact.php">
+                          <i class="fas fas "></i><br>
+                          <h5>Total Contact</h5>
+                          <h4><?php echo $contactCount;?></h4>
+                        </a>
+                        </div>
                       </div>
                     </div>
                   </div>
