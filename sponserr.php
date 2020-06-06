@@ -63,27 +63,28 @@ if(isset($_POST['save'])){
                 <input name="company_name" class="form-control" required="" autofocus="" />
                 <br>
                 <label>Existing Customer</label>
-                <input name="exiting_customer" class="form-control" required="" autofocus="">
-                <br>
+                <br><br>
+                <input  type="radio" checked="" name="gender" value="yes"/>Yes
+                <input  type="radio" name="gender" value="no"/>No <br> <br>
                 <label>Primary Phone Number</label>
                 <input name="primary_phone_number" class="form-control" required="" autofocus="">
 
                 <br>
                 <label>Secondary Phone Number</label>
                 <input name="sec_phone_number" class="form-control" required="" autofocus="">
-
+                <br>
                 <label>Contact Details</label>
                 <input name="contact_details " class="form-control" required="" autofocus="">
-
+                <br>
                 <label>Animals Sponser Name</label>
                 <input name="animal_sponser_name" class="form-control" required="" autofocus="">
-
+                <br>
                 <label>Start Date Sponser</label>
                 <input name="start_date_spon" class="form-control" required="" autofocus="">
-
+                <br>
                 <label>Signature Area</label>
                 <input name="signature_area" class="form-control" required="" autofocus="">
-
+                <br>
                 <label>Select Sponser Type</label>
                 <select name="sponsershipCat"  class="form-control grey-glow">
                 <option value="">Select One</option>

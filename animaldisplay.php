@@ -1,11 +1,13 @@
 <?php
-// require 'constants.php';
+require 'constants.php';
 require 'admin/db/conn.php';
 $id = $_GET['id'];
- $animal = $pdo->prepare("select * from animals where a_id = '$id'");
+ $animal = $pdo->prepare("select a.*, ac.type as animal_category from animals as a 
+ 						join animal_category as ac on a.animalcategoryId = ac.ac_id
+ 						 where a.a_id = '$id'");
   $animal->execute();
   $row = $animal->fetch();
-  // echo '<pre>'; print_r($row);
+  // echo '<pre>'; print_r($row); die();
 ?>
 
 <?php require 'includes/header.php'; ?>
@@ -23,6 +25,80 @@ $id = $_GET['id'];
 						<h3><?php echo $row['name'];?></h3>
 						<img src="uploads/<?php echo $row['image'];?>" class="img-responsive" alt="<?php echo $row['name'];?>">
 						
+						<div class="about2">
+							<h2>Animal Category : </h2>
+							<h3><?php echo $row['animal_category'];?></h3>
+						</div>
+
+						<?php if($row['animalcategoryId'] == MAMMALS){?>
+							<div class="about3">
+								<h2>Gestational Period:</h2>
+								<h3><?php echo $row['gestational_period'];?></h3>
+							</div>
+							<div class="col-md-6 about-grid">
+								<h2>Mammal Category :</h2>
+								<div class="history">
+									<h3><?php echo $row['mammal_category'];?></h3>	
+								</div>
+							</div>
+							<div class="history1">
+								<h2>Average body temperature:</h2>
+								<h3><?php echo $row['avg_body_temp'];?></h3>	
+							</div>
+						<?php }
+						else if($row['animalcategoryId'] == REPTILES){?>
+                            <div class="history2">
+								<h2>Reproduction type:</h2>
+								<h3><?php echo $row['reproduction_type'];?></h3>	
+							</div>
+							<div class="history3">
+								<h2>Average Clutch Size:</h2>
+								<h3><?php echo $row['avg_clutch_size'];?></h3>
+								
+							</div>
+							<div class="history3">
+								<h2>Average number of offspring:</h2>
+								<h3><?php echo $row['avg_offspring'];?></h3>
+								
+							</div>
+						<?php }
+						else if($row['animalcategoryId'] == BIRDS){?>
+							<div class="history3">
+								<h2>Nest Construction Method:</h2>
+								<h3><?php echo $row['nest_const_metd'];?></h3>
+							</div>
+							<div class="history3">
+								<h2>Clutch size:</h2>
+								<h3><?php echo $row['aclutch_size'];?></h3>
+							</div>
+							<div class="history3">
+								<h2>Wing Span:</h2>
+							    <h3><?php echo $row['wing_span'];?></h3>
+							</div>
+							<div class="history3">
+								<h2>Ability to fly (Yes/No):</h2>
+								<h3><?php echo $row['ability_to_fly'];?></h3>
+							</div>
+							<div class="history3">
+								<h2>Plumage colour variants (possibly by gender):</h2>
+								<h3><?php echo $row['birds_color_variant'];?></h3>
+							</div>
+					    <?php }
+					    else if($row['animalcategoryId'] == FISH){?>
+					    	<div class="history3">
+								<h2>Average body temperature:</h2>
+								<h3><?php echo $row['fish_avg_body_temp'];?></h3>
+							</div>
+							<div class="history3">
+								<h2>Water Type :</h2>
+								<h3><?php echo $row['water_type'];?></h3>
+							</div>
+							<div class="history3">
+								<h2>Fishes Color variants:</h2>
+								<h3><?php echo $row['fishes_color_variant'];?></h3>
+							</div>
+					    <?php }?>
+
 						<div class="about2">
 					        <h2>Species Name:</h2>
 						<h3><?php echo $row['species_name'];?></h3>
@@ -73,78 +149,10 @@ $id = $_GET['id'];
 						<h3><?php echo $row['dimension'];?></h3>
 					
 						</div>
-						<div class="about3">
-							<h2>Gestational Period:</h2>
-						<h3><?php echo $row['gestational_period'];?></h3>
-					
-						</div>
-						</div>
-					<div class="col-md-6 about-grid">
-						    <h2>Mammal Category :</h2>
-						<div class="history">
-							<h3><?php echo $row['mammal_category'];?></h3>
-							
-						</div>
-						<div class="history1">
-							<h2>Average body temperature:</h2>
-							<h3><?php echo $row['avg_body_temp'];?></h3>
-							
-						</div>
-						<div class="history2">
-							<h2>Reproduction type:</h2>
-							<h3><?php echo $row['reproduction_type'];?></h3>
-							
-						</div>
-						<div class="history3">
-							<h2>Reproduction type:</h2>
-							<h3><?php echo $row['avg_clutch_size'];?></h3>
-							
-						</div>
-						<div class="history3">
-							<h2>Average number of offspring:</h2>
-							<h3><?php echo $row['avg_offspring'];?></h3>
-							
-						</div>
-						<div class="history3">
-							<h2>Nest Construction Method:</h2>
-							<h3><?php echo $row['nest_const_metd'];?></h3>
+						<!-- -->
 						
-						</div>
-						<div class="history3">
-							<h2>Clutch size:</h2>
-							<h3><?php echo $row['aclutch_size'];?></h3>
-							
-						</div>
-						<div class="history3">
-							<h2>Wing Span:</h2>
-						    <h3><?php echo $row['wing_span'];?></h3>
-							
-						</div>
-						<div class="history3">
-							<h2>Ability to fly (Yes/No):</h2>
-							<h3><?php echo $row['ability_to_fly'];?></h3>
-							
-						</div>
-						<div class="history3">
-							<h2>Plumage colour variants (possibly by gender):</h2>
-							<h3><?php echo $row['birds_color_variant'];?></h3>
-							
-						</div>
-						<div class="history3">
-							<h2>Average body temperature:</h2>
-							<h3><?php echo $row['fish_avg_body_temp'];?></h3>
-							
-						</div>
-						<div class="history3">
-							<h2>Water Type :</h2>
-							<h3><?php echo $row['water_type'];?></h3>
-							
-						</div>
-						<div class="history3">
-							<h2>Fishes Color variants:</h2>
-							<h3><?php echo $row['fishes_color_variant'];?></h3>
-							
-						</div>
+						
+						
 					</div>
 					<div class="clearfix"></div>
 				</div>
