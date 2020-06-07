@@ -4,10 +4,12 @@
   header('Location:login.php');
   }
   require 'db/conn.php';
-  // $animal = $pdo->prepare("select * from animals");
-  // type
-    $tickets = $pdo->prepare("select * from ticket");
-    $tickets->execute();
+  $tickets = $pdo->prepare("select ticket.*, user.username   
+                          from ticket 
+                          join user on ticket.userId = user.u_id
+                          ");
+  $tickets->execute();
+
 
     if(isset($_GET['did'])){
     $tickets = $pdo->prepare('select * from tickets where t_id = :did');
@@ -81,7 +83,6 @@
                       <th>user name</th>
                       <th>No Of Adult</th>
                       <th>No Of Child</th>
-                      <th>Day</th>
                       <th>Booked Date</th>
                       <th>Total Amount</th>
                       <th>Action</th>
@@ -94,15 +95,14 @@
                     <?php foreach ($tickets as $tickett) {?>
                       <tr>
                         <td><?php echo $i++; ?></td>
-                        <td></td>
+                        <td><?php echo $tickett['username'] ?></td>
                         <td><?php echo $tickett['no_of_adult'] ?></td>
                         <td><?php echo $tickett['no_of_child'];?></td> 
-                        <td><?php echo $tickett['day'];?></td> 
                         <td><?php echo $tickett['booked_date'];?></td> 
                         <td><?php echo $tickett['total'];?></td> 
                         <td>
                             <?php 
-                                  if($tickett['status'] == 0){
+                                  if($tickett['booked'] == 0){
                                       echo 'Not Confirmed';
                                   }
                                   else{
@@ -113,7 +113,7 @@
                         </td>
                         <td>
                         <!-- <a href="editEvent.php?eid=<?php ;?>" class="btn btn-info btn-sm">Edit</a> -->
-                        <?php if($tickett['status'] == 0){?>
+                        <?php if($tickett['booked'] == 0){?>
                                                 <a href="manageticket.php?eid=<?php echo $tickett['t_id'];?>" class="btn btn-sm btn-icon btn-primary">Confirm</a>
                                             <?php }?>
                         <a href="manageticket.php?did=<?php echo $tickett['t_id'];?>" class="btn btn-danger btn-sm">Delete</a>
