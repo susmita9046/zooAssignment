@@ -4,23 +4,12 @@
   header('Location:login.php');
   }
   require 'db/conn.php';
-  // $animal = $pdo->prepare("select * from animals");
-  // type
-    $eventList = $pdo->prepare("select * from sponser");
-    $eventList->execute();
-
-    if(isset($_GET['did'])){
-    $events = $pdo->prepare('select * from events where e_id = :did');
-    $events ->execute($_GET);
-      if($events->rowCount() == 0) {
-        $stmt = $pdo->prepare('DELETE FROM event WHERE e_id = :did');
-        $stmt->execute($_GET);
-        header('Location:event.php?success=event Deletted Successfully');
-        }
-        else{
-        $_GET['success'] = 'Can not be deleted because there are Animals under this AnimalType';
-            }
-                         }
+  $sponsorList = $pdo->prepare("select sponshership_form.*, user.username, animals.name as animalName ,sponsership.yearly_fee as yearlyFee  
+                              from sponshership_form 
+                              join user on sponshership_form.userId = user.u_id
+                              join animals on sponshership_form.animal_sponser_id = animals.a_id 
+                              join sponsership on sponshership_form.sponsershipCat = sponsership.s_id");
+  $sponsorList->execute();
  ?> 
 <!doctype html>
 <html lang="en">
@@ -78,16 +67,15 @@
                   <thead>
                     <tr class="text-muted">
                       <th>S.N</th>
-                      <th>image</th>
+                      <th>User</th>
                       <th>Company Name</th>
                       <th>existing Customer</th>
                       <th>Primary Phone Number</th>
                       <th>Secondary Phone Number</th>
                       <th>Contact Details</th>
-                      <th>Sponser Animals Name</th>
-                      <th>Spomsership Brand</th>
+                      <th>Sponsored Animal Name</th>
+                      <th>Spomsership Yearly Fee</th>
                       <th>Sponser date</th>
-                      <th>Total</th>
                       <th>Signage % Area</th>
                       <th></th>
                       <th></th>
@@ -100,25 +88,19 @@
                        
                   <tbody>
                     <?php $i = 1; ?>
-                    <?php foreach ($animal as $Animal) {?>
+                    <?php foreach ($sponsorList as $sponsers) {?>
                       <tr>
                         <td><?php echo $i++; ?></td> 
-                        <td><?php echo $Animal['image'] ?></td>
-                        <td><?php echo $Animal['company_name'] ?></td>
-                        <td><?php echo $Animal['exiting_customer'];?></td>
-                        <td><?php echo $Animal['primary_phone_number'];?></td>
-                        <td><?php echo $Animal['sec_phone_number'] ?></td>
-                        <td><?php echo $Animal['contact_details'];?></td>
-                        <td><?php echo $Animal['animal_sponser_name'] ?></td>
-                        <td><?php echo $Animal['sponsership_brand'] ?></td>
-                        <td><?php echo $Animal['start_date_spon'];?></td>
-                        <td><?php echo $Animal['total'];?></td>
-                        <td><?php echo $Animal['signature_area'];?></td>
-                        
-                        <td>
-                        <a href="editAnimalType.php?eid=<?php echo $Animal['a_id'];?>" class="btn btn-info btn-sm">Edit</a>
-                        <a href="animals.php?did=<?php echo $Animal['a_id'];?>" class="btn btn-danger btn-sm">Delete</a>
-                        </td>
+                        <td><?php echo $sponsers['username'] ?></td>
+                        <td><?php echo $sponsers['company_name'] ?></td>
+                        <td><?php echo $sponsers['exiting_customer'];?></td>
+                        <td><?php echo $sponsers['primary_phone_number'];?></td>
+                        <td><?php echo $sponsers['sec_phone_number'] ?></td>
+                        <td><?php echo $sponsers['contact_details'];?></td>
+                        <td><?php echo $sponsers['animalName'] ?></td>
+                        <td><?php echo $sponsers['yearlyFee'] ?></td>
+                        <td><?php echo $sponsers['start_date_spon'];?></td>
+                        <td><?php echo $sponsers['signature_area'];?></td>
                       </tr>
                     <?php } ?> 
                   </tbody>

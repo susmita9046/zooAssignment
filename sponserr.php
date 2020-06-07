@@ -1,17 +1,21 @@
 <?php
 session_start();
 if(!isset($_SESSION['UserId'])){
-header('Location:login.php');
-    }
+  header('Location:login.php');
+}
 require 'admin/db/conn.php';
 $sponsercat = $pdo->prepare("select * from sponsership");
 $sponsercat->execute();
 
+$animalList = $pdo->prepare("select * from animals");
+$animalList->execute();
+
 if(isset($_POST['save'])){
     $stmt = $pdo->prepare("INSERT INTO
-            sponshership_form(company_name,exiting_customer,primary_phone_number,sec_phone_number,contact_details,animal_sponser_name,animal_sponser_name,start_date_spon,signature_area,sponsershipCat) values(:company_name,:exiting_customer,:primary_phone_number,:sec_phone_number,:contact_details,:animal_sponser_name,:animal_sponser_name,:start_date_spon,:signature_area,:sponsershipCat)");
+            sponshership_form(userId,company_name,exiting_customer,primary_phone_number,sec_phone_number,contact_details,animal_sponser_id,start_date_spon,signature_area,sponsershipCat) values(:userId, :company_name,:exiting_customer,:primary_phone_number,:sec_phone_number,:contact_details,:animal_sponser_id,:start_date_spon,:signature_area,:sponsershipCat)");
    
     unset($_POST['save']);
+    $_POST['userId'] = $_SESSION['UserId'];
     // echo '<pre>'; print_r($_POST); die();
     $stmt->execute($_POST);
     // hader('Location:contact.php?success=contacts Added Successfully');
@@ -19,15 +23,13 @@ if(isset($_POST['save'])){
     }
 ?>
 <?php require 'includes/header.php'; ?>
-<div class="content">
-    <div class="contact">
-    <div class="container">
-     <style type="text/css">
+
+<style type="text/css">
       body {
         background: #eee;
       }
       .wrapper {
-        margin: 80px;
+        /*margin: 80px;*/
       }
       .form-signin {
         max-width: 380px;
@@ -44,67 +46,69 @@ if(isset($_POST['save'])){
         margin-bottom: 20px;
       }
       .form-signin .form-control {
-        padding: 10px;
+        /*padding: 10px;*/
       }
-    </style>
+</style>
 
-<div class="wrapper">
-  <div class="container">
-  
-  </div>
-</div>
-<!--header-->
- <div class="content">
+<div class="content">
+  <div class="contact">
+    <div class="container">
+      <div class="wrapper">
         <form class="form-signin"  method="POST" action="" class="col-xl-6" enctype="multipart/form-data">
-              <div class="form_details">
-                <h3>Sponser form</h3> 
-                <br><br>
-                <label>Company Name</label>
-                <input name="company_name" class="form-control" required="" autofocus="" />
-                <br>
-                <label>Existing Customer</label>
-                <br><br>
-                <input  type="radio" checked="" name="gender" value="yes"/>Yes
-                <input  type="radio" name="gender" value="no"/>No <br> <br>
-                <label>Primary Phone Number</label>
-                <input name="primary_phone_number" class="form-control" required="" autofocus="">
+            <div class="form_details">
+              <h3>Sponser form</h3> 
+              <br><br>
+              <label>Company Name</label>
+              <input name="company_name" class="form-control" required="" autofocus="" />
+              <br>
+              <label>Existing Customer</label>
+              <br><br>
+              <input  type="radio" checked="" name="exiting_customer" value="1"/> Yes 
+              <input  type="radio" name="exiting_customer" value="0"/> No <br> <br>
+              <label>Primary Phone Number</label>
+              <input name="primary_phone_number" class="form-control" required="" autofocus="">
 
-                <br>
-                <label>Secondary Phone Number</label>
-                <input name="sec_phone_number" class="form-control" required="" autofocus="">
-                <br>
-                <label>Contact Details</label>
-                <input name="contact_details " class="form-control" required="" autofocus="">
-                <br>
-                <label>Animals Sponser Name</label>
-                <input name="animal_sponser_name" class="form-control" required="" autofocus="">
-                <br>
-                <label>Start Date Sponser</label>
-                <input name="start_date_spon" class="form-control" required="" autofocus="">
-                <br>
-                <label>Signature Area</label>
-                <input name="signature_area" class="form-control" required="" autofocus="">
-                <br>
-                <label>Select Sponser Type</label>
-                <select name="sponsershipCat"  class="form-control grey-glow">
+              <br>
+              <label>Secondary Phone Number</label>
+              <input name="sec_phone_number" class="form-control" required="" autofocus="">
+              <br>
+              <label>Contact Details</label>
+              <input name="contact_details" class="form-control" required="" autofocus="">
+              <br>
+              <label>Animals Sponser Name</label>
+              <select name="animal_sponser_id" class="form-control" required="">
+                <option value="">Select One</option>
+                <?php foreach ($animalList as $animal) {?>
+                  <option value="<?php echo $animal['a_id'];?>"><?php echo $animal['name'];?></option>
+                <?php } ?>
+
+              </select>
+              <br>
+              <label>Start Date Sponser</label>
+              <input name="start_date_spon" type="date" class="form-control" required="" autofocus="">
+              <br>
+              <label>Signature Area</label>
+              <input name="signature_area" class="form-control" required="" autofocus="">
+              <br>
+              <label>Select Sponser Type</label>
+              <select name="sponsershipCat"  class="form-control grey-glow" required="">
                 <option value="">Select One</option>
                 <?php 
                 foreach ($sponsercat as $sponsers) {?>
-                <option value="<?php echo $sponsers['s_id'];?>">
-                <?php echo $sponsers['band'];?>
-                </option>
+                  <option value="<?php echo $sponsers['s_id'];?>">
+                  <?php echo $sponsers['band'];?>
+                  </option>
                 <?php }?>
-                </select>
-                <br>
-              <div class="form-group">
-                <input type="submit" name="save" class="btn btn-dark" value="Save">
-                <!-- <a href="animaltype.php" class="btn btn-outline-dark ml-1"><i class="fa fa-close"></i> Back</a> -->
-              </div>
+              </select>
+              <br>
+            <div class="form-group">
+              <input type="submit" name="save" class="btn btn-dark" value="Save">
+              <!-- <a href="animaltype.php" class="btn btn-outline-dark ml-1"><i class="fa fa-close"></i> Back</a> -->
+            </div>
         </form>
-        </div>
-      </div>  
-      <div class="clearfix"> </div>
-    </div>
+      </div>
+    </div>  
+    <div class="clearfix"> </div>
   </div>
 </div>
         

@@ -7,10 +7,10 @@ require 'db/conn.php';
 $animalTypeList = $pdo->prepare('SELECT * FROM animal_category');
 $animalTypeList->execute();
 
-if(isset($_GET['aid'])){
-$animals = $pdo->prepare('SELECT * FROM animals WHERE a_id = :aid');
-$animals->execute($_GET);
-$row = $animals->fetch();
+if(isset($_GET['eid'])){
+    $animals = $pdo->prepare('SELECT * FROM animals WHERE a_id = :eid');
+    $animals->execute($_GET);
+    $row = $animals->fetch();
 }
 if(isset($_POST['update'])){
     $stmt = $pdo->prepare("UPDATE animals SET animalcategoryId =:animalcategoryId,species_name =:species_name,name =:name,date_of_birth=:date_of_birth,gender =:gender,avg_life_span =:avg_life_span,species_category =:species_category,dietary =:dietary,natural_habitat =:natural_habitat,global_population =:global_population,date_of_joined =:date_of_joined,dimension =:dimension,image =:image,gestational_period =:gestational_period,mammal_category =:mammal_category,avg_body_temp =:avg_body_temp,reproduction_type =:reproduction_type,avg_clutch_size =:avg_clutch_size,avg_offspring =:avg_offspring,nest_const_metd =:nest_const_metd,aclutch_size =:aclutch_size,wing_span =:wing_span,ability_to_fly =:ability_to_fly,birds_color_variant =:birds_color_variant,fish_avg_body_temp =:fish_avg_body_temp,water_type =:water_type,fishes_color_variant =:fishes_color_variant
@@ -18,7 +18,7 @@ if(isset($_POST['update'])){
      WHERE a_id = :a_id");
     unset($_POST['update']);
     $stmt->execute($_POST);
-    header('Location:animal.php?success=animals Updated Successfully');
+    header('Location:animals.php?success=animals Updated Successfully');
     }
 ?>
 <!doctype html>

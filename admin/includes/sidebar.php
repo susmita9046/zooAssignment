@@ -36,7 +36,7 @@
       </a>
     </li>
     <li class="nav-item">
-      <a href="sponser.php" class="nav-link text-white p-3 mb-2 sidebar-link">
+      <a href="managesponser.php" class="nav-link text-white p-3 mb-2 sidebar-link">
         <i class="fas fa-hands-helping text-light fa-lg mr-3"></i>Manage Sponsors
       </a>
     </li>

@@ -29,8 +29,8 @@ require 'constants.php';
 			</div> -->
 			<div class="col-md-12 banner-grid">
 				<ul class="nav navbar-nav">
-								<li><a href="sponser.php" class="sponser">Buy Tickets</a></li>
-								<li><a href="about.php" class="tickets">Sponser</a></li>
+								<li><a href="buytickets.php" class="sponser">Buy Tickets</a></li>
+								<li><a href="sponserr.php" class="tickets">Sponser</a></li>
 								
 																
 							</ul>

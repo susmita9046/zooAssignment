@@ -4,19 +4,19 @@
     header('Location:login.php');
   }
    require 'db/conn.php';
-  $admins = $pdo->prepare('select * from user where type = 2');
-  $admins->execute();
-  $adminCount = $admins->rowCount();
+  // $admins = $pdo->prepare('select * from user where type = 2');
+  // $admins->execute();
+  // $adminCount = $admins->rowCount();
 
   $animalCategory = $pdo->prepare('select * from animal_category');
   $animalCategory->execute();
-  $animalCount = $animalCategory->rowCount();
+  $animalCategoryCount = $animalCategory->rowCount();
 
   $animal = $pdo->prepare('select * from animals');
   $animal->execute();
   $animalCount = $animal->rowCount();
 
-  $users = $pdo->prepare('select * from user where type = 0');
+  $users = $pdo->prepare('select * from user where role = 0');
   $users->execute();
   $userCount = $users->rowCount();
 
@@ -105,7 +105,7 @@
                           <a href="animaltype.php">
                           <i class="fas fas "></i><br>
                           <h5>Animal Category</h5>
-                          <h4><?php echo $animalCount;?></h4>
+                          <h4><?php echo $animalCategoryCount;?></h4>
                         </a>
                         </div>
                       </div>
