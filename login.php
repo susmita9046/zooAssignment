@@ -36,7 +36,7 @@ if(isset($_POST['login'])){
         background: #eee;
       }
       .wrapper {
-        margin: 80px;
+        /*margin: 80px;*/
       }
       .form-signin {
         max-width: 380px;

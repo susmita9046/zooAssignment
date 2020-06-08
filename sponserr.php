@@ -9,17 +9,25 @@ $sponsercat->execute();
 
 $animalList = $pdo->prepare("select * from animals");
 $animalList->execute();
-
 if(isset($_POST['save'])){
+  if(isset($_FILES['image'])){
+            $image = $_FILES['image']['name'];
+            $tmp_loc = $_FILES['image']['tmp_name'];
+            $perm_loc = 'uploads/' . $image;
+            copy($tmp_loc, $perm_loc);
+    }
+    else{
+         $image = '';
+    }
     $stmt = $pdo->prepare("INSERT INTO
-            sponshership_form(userId,company_name,exiting_customer,primary_phone_number,sec_phone_number,contact_details,animal_sponser_id,start_date_spon,signature_area,sponsershipCat) values(:userId, :company_name,:exiting_customer,:primary_phone_number,:sec_phone_number,:contact_details,:animal_sponser_id,:start_date_spon,:signature_area,:sponsershipCat)");
-   
+            sponshership_form(userId,image,company_name,exiting_customer,primary_phone_number,sec_phone_number,contact_details,animal_sponser_id,start_date_spon,signature_area,sponsershipCat) values(:userId, :image,:company_name,:exiting_customer,:primary_phone_number,:sec_phone_number,:contact_details,:animal_sponser_id,:start_date_spon,:signature_area,:sponsershipCat)");
     unset($_POST['save']);
     $_POST['userId'] = $_SESSION['UserId'];
+    $_POST['image'] = $image;
     // echo '<pre>'; print_r($_POST); die();
     $stmt->execute($_POST);
     // hader('Location:contact.php?success=contacts Added Successfully');
-    echo "Tickets added Successfully";
+    echo "sponser added Successfully";
     }
 ?>
 <?php require 'includes/header.php'; ?>
@@ -58,6 +66,8 @@ if(isset($_POST['save'])){
             <div class="form_details">
               <h3>Sponser form</h3> 
               <br><br>
+              <label>Add Image</label>
+              <input type="file" class="form-control-file" name="image"><br>
               <label>Company Name</label>
               <input name="company_name" class="form-control" required="" autofocus="" />
               <br>

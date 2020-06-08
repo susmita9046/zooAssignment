@@ -1,3 +1,8 @@
+<?php
+require 'admin/db/conn.php';
+$User = $pdo->prepare("select * from user where role = 0");
+$User->execute();
+?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -37,19 +42,23 @@
 						<!-- Collect the nav links, forms, and other content for toggling -->
 						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					  		<ul class="nav navbar-nav">
-								<li><a href="index.php">Home</a></li>
+								<li><a href="userhomepage.php">Home</a></li>
 								<li><a href="about.php">About</a></li>
-								<!-- <li class="dropdown">
-									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My List<span class="caret"></span></a>
-									<ul class="dropdown-menu">
-										<li><a href="">Submenu 1</a></li>
-										<li><a href="">Submenu 2</a></li>
-										<li><a href="">Submenu 3</a></li>
-									</ul>
-								</li> -->
 								<li><a href="contact.php">Contact</a></li>
-								<li><a href="login.php">Login</a></li>
-								<li><a href="register.php">Register</a></li>
+								<li class="dropdown">
+								<a href="usermanage.php" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user">
+                                <?php foreach ($User as $userr) {?>
+                                    <?php echo $userr['username'] ?>
+								</i> 
+								<span class="caret"></span>
+							    <?php } ?> </a>
+                                <ul class="dropdown-menu">
+								<li><a href="ticketlist.php">Your Tickets List</a></li>
+								<li><a href="sponserlist.php">Your Sponser List</a></li>
+								<li><a href="logout.php">Logout</a></li>
+								</ul>
+								</li>
+								<!-- <li><a href="login.php">Login</a></li> -->
 							</ul>
 						</div><!-- /.navbar-collapse -->
 					

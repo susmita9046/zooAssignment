@@ -4,8 +4,6 @@
   header('Location:login.php');
   }
   require 'db/conn.php';
-  // $animal = $pdo->prepare("select * from animals");
-  // type
     $contacts = $pdo->prepare("select * from contact");
     $contacts->execute();
 

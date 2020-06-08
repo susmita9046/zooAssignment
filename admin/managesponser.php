@@ -4,7 +4,7 @@
   header('Location:login.php');
   }
   require 'db/conn.php';
-  $sponsorList = $pdo->prepare("select sponshership_form.*, user.username, animals.name as animalName ,sponsership.yearly_fee as yearlyFee  
+  $sponsorList = $pdo->prepare("select sponshership_form.*, user.username, animals.name as animalName ,sponsership.yearly_fee   as yearlyFee  
                               from sponshership_form 
                               join user on sponshership_form.userId = user.u_id
                               join animals on sponshership_form.animal_sponser_id = animals.a_id 
@@ -68,6 +68,7 @@
                     <tr class="text-muted">
                       <th>S.N</th>
                       <th>User</th>
+                      <th>Image</th>
                       <th>Company Name</th>
                       <th>existing Customer</th>
                       <th>Primary Phone Number</th>
@@ -92,6 +93,7 @@
                       <tr>
                         <td><?php echo $i++; ?></td> 
                         <td><?php echo $sponsers['username'] ?></td>
+                        <td><?php echo $sponsers['image'] ?></td>
                         <td><?php echo $sponsers['company_name'] ?></td>
                         <td><?php echo $sponsers['exiting_customer'];?></td>
                         <td><?php echo $sponsers['primary_phone_number'];?></td>

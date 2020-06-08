@@ -4,13 +4,14 @@ if(!isset($_SESSION['AUserId'])){
         header('Location:login.php');
 }
 require 'db/conn.php';
-    if(isset($_GET['Eid'])){
-    $event = $pdo->prepare('SELECT * FROM event WHERE e_id = :Eid');
-    $event->execute($_GET);
-    $row = $event->fetch();
+    if(isset($_GET['eid'])){
+    $events = $pdo->prepare('SELECT * FROM event WHERE e_id = :eid');
+    $events->execute($_GET);
+    $row = $events->fetch();
     }
 if(isset($_POST['update'])){
-    $stmt = $pdo->prepare("UPDATE event SET event_name = :event_name,image =:image,date_of_event =:date_of_event,end_of_event =:end_of_event,location =:location ,description =:description WHERE e_id = :e_id");
+    $stmt = $pdo->prepare("UPDATE event SET event_name = :event_name,image =:image,date_of_event =:date_of_event,end_of_event =:end_of_event,location =:location ,description =:description 
+        WHERE e_id = :e_id");
     unset($_POST['update']);
     $stmt->execute($_POST);
     header('Location:event.php?success=Event Updated Successfully');
@@ -96,7 +97,7 @@ if(isset($_POST['update'])){
                         <br> 
                     </div>
                     <div class="form-group">
-                        <input type="submit" name="save" class="btn btn-dark" value="Save">
+                        <input type="submit" name="update" class="btn btn-dark" value="Save">
                         <a href="event.php" class="btn btn-outline-dark ml-1"><i class="fa fa-close"></i> Back</a>
                     </div>
                 </form>

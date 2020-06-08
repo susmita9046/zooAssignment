@@ -1,46 +1,51 @@
 <?php
-session_start();
-  if(!isset($_SESSION['UserId'])){
-    header('Location:login.php');
-  }
-require 'admin/db/conn.php';
-require 'constants.php';
- $eventList = $pdo->prepare("select * from event");
-  $eventList->execute();
+    session_start();
+    if(!isset($_SESSION['UserId'])){
+        header('Location:login.php');
+    }
 ?>
-<!-- <!DOCTYPE html>
-<html>
-<head>
-	<title>this is the homepage</title>
-</head>
-<body> -->
-<?php require 'includes/header.php'; ?>
-	
-<!-- header banner -->
-<div class="header-banner">
-	<div class="container">
-		<div class="head-banner">
-			<h3>Dave Zucconi Conservation Center</h3>
-			<p>Donec dui velit, hendrerit id pharetra nec, posuere porta nisl. Donec magna nulla, commodo in ultrices faucibus lacus aliquet.Donec dui velit, hendrerit id pharetra nec</p>
-		</div>
-		<div class="banner-grids">
-			<!-- <div class="col-md-8 banner-grid">
-				
-			</div> -->
-			<div class="col-md-12 banner-grid">
-				<ul class="nav navbar-nav">
-								<li><a href="buytickets.php" class="sponser">Buy Tickets</a></li>
-								<li><a href="sponserr.php" class="tickets">Sponser</a></li>
-								
-																
-							</ul>
+<?php
+require 'constants.php';
+require 'admin/db/conn.php';
+  $eventList = $pdo->prepare("select * from event");
+  $eventList->execute();
+
+if(isset($_POST['keyword'])){
+	// print_r($_POST); die();
+	$keyword = $_POST['keyword'];
+    $search_animals = $pdo->prepare("SELECT * from animals WHERE name like '%$keyword%'");
+	$search_animals->execute();
+}
+?>
+<?php require 'includes/userheader.php'; ?>
+
+<?php if(!isset($search_animals)){?>
+	<!-- header banner -->
+	<div class="header-banner">
+		<div class="container">
+			<div class="head-banner">
+				<h3>Dave Zucconi Conservation Center</h3>
+				<p>Donec dui velit, hendrerit id pharetra nec, posuere porta nisl. Donec magna nulla, commodo in ultrices faucibus lacus aliquet.Donec dui velit, hendrerit id pharetra nec</p>
 			</div>
-			
-			<div class="clearfix"></div>
+			<div class="banner-grids">
+				<!-- <div class="col-md-8 banner-grid">
+					
+				</div> -->
+				<div class="col-md-12 banner-grid">
+					<ul class="nav navbar-nav">
+									<li><a href="buytickets.php" class="sponser">Buy Tickets</a></li>
+									<li><a href="sponserr.php" class="tickets">Sponser</a></li>
+									
+																	
+								</ul>
+				</div>
+				
+				<div class="clearfix"></div>
+			</div>
 		</div>
 	</div>
-</div>
-<!-- hadder banner ends -->
+	<!-- hadder banner ends -->
+<?php }?>
 
 <!--content-->	
 
@@ -62,14 +67,19 @@ require 'constants.php';
 		            </div>
             	<div class ="col-md-3">
 					<form method="post" action="">
-		    			<input class="form-control" type="text" name="keyword" placeholder="Search Here">
+		    			<input class="form-control" type="text" name="keyword" placeholder="Search by Name">
 					</form>
         		</div>
     		</div>
 			<div class="welcome-grids">
 				<?php 
-				$animals = $pdo->prepare('select * from animals where animalcategoryId = ' . MAMMALS);
-				$animals->execute();
+				if(isset($search_animals)){
+					$animals = $search_animals;
+				}
+				else{
+					$animals = $pdo->prepare('select * from animals where animalcategoryId = ' . MAMMALS);
+					$animals->execute();
+				}
 				foreach($animals as $row) {?>
 					<div class="col-md-3 welcome-grid">
 						<img src="uploads/<?php echo $row['image'];?>" alt=" " class="img-responsive" />
@@ -86,9 +96,7 @@ require 'constants.php';
 			</div>
 		</div>
 	</div>
-	<!--welcome ends-->
 	
-
 </div>
 <!--content ends-->
 

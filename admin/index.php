@@ -23,6 +23,14 @@
   $events = $pdo->prepare('select * from event');
   $events->execute();
   $eventCount = $events->rowCount();
+  
+  $tickets = $pdo->prepare('select * from ticket');
+  $tickets->execute();
+  $ticketCount = $tickets->rowCount();
+
+  $sponsers = $pdo->prepare('select * from sponshership_form');
+  $sponsers->execute();
+  $sponserCount = $sponsers->rowCount();
 
   $contacts = $pdo->prepare('select * from contact');
   $contacts->execute();
@@ -138,8 +146,11 @@
                     <div class="d-flex justify-content-between">
                       <i class="fas fa-ticket-alt fa-3x text-success"></i>
                       <div class="text-right text-secondary">
-                        <h5>Total Tickets</h5>
-                        <h3>500</h3>
+                        <a href="manageticket.php">
+                          <i class="fas fas "></i><br>
+                          <h5>Total Tickets</h5>
+                          <h4><?php echo $ticketCount;?></h4>
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -157,6 +168,25 @@
                           <i class="fas fas "></i><br>
                           <h5>Total Events</h5>
                           <h4><?php echo $eventCount;?></h4>
+                        </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xl-3 col-sm-6 p-2">
+                <div class="card card-common">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                      <i class="fas fa-user-clock fa-3x text-success"></i>
+                      <div class="text-right text-secondary">
+                         <div>
+                          <a href="managesponser.php">
+                          <i class="fas fas "></i><br>
+                          <h5>Total Sponser</h5>
+                          <h4><?php echo $sponserCount;?></h4>
                         </a>
                         </div>
                       </div>

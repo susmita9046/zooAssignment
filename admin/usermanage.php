@@ -81,7 +81,7 @@
                     <?php $i = 1; ?>
                     <?php foreach ($Users as $usert) {?>
                       <tr>
-                         <td><?php echo $i++; ?></td> 
+                        <td><?php echo $i++; ?></td> 
                         <td><?php echo $usert['username'] ?></td>
                         <td><?php echo $usert['email'];?></td>
                         <td><?php echo $usert['location'];?></td>

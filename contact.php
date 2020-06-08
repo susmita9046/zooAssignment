@@ -1,9 +1,4 @@
 <?php
-session_start();
-if(!isset($_SESSION['UserId'])){
-header('Location:login.php');
-    }
-
 require 'admin/db/conn.php';
 $contacts = $pdo->prepare('SELECT * FROM contact');
 $contacts->execute();
