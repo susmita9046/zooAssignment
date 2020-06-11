@@ -95,35 +95,61 @@ if(isset($_POST['keyword'])){
 <!--content ends-->
 
 
-<!--events-->
+<!--events ends-->
+
 <div class="events">
 	<div class="container">
 		<h3>events</h3>
          <!-- <div class = "row"> -->
         <div class="events-grids">
-        	<div class = "col-md-12 ">
-           		<?php 
-           	 	if($eventList->rowCount() > 0){
-              		foreach ($eventList as $evenT) {?>   
-		                <div class="col-md-3 event-grid">
-							<a class="mask">
-								<img height="200" src ="http://localhost/zooassignment/admin/image/<?php echo $evenT['image'];?>">
-							</a>
-							<div>
-								<h4><b>Event Name :</b> <?php echo $evenT['event_name'] ?></h4>
-								<h5><b>Event Date :</b> <?php echo $evenT['date_of_event'];?></h5>
-								<h5><b>Location : </b> <?php echo $evenT['location'];?></h5>
-								<p><b>Description : </b> <?php echo $evenT['description'];?></p>
-							</div>
-					   	</div>             
-             		<?php }
-             	}?>
-         	 </div>
+        <div class = "col-md-12 ">
+          
+           <?php 
+            if($eventList->rowCount() > 0){
+              foreach ($eventList as $evenT) {?>
+                
+                <div class="col-md-3 event-grid">
+				<a href="#" class="mask">
+				<img height="300" src ="http://localhost/zooassignment/admin/image/<?php echo $evenT['image'];?>"></a>
+			    </div>             
+                <div class="col-md-3 event-grid1">
+				<h4><?php echo $evenT['event_name'] ?></h4>
+				<h5><?php echo $evenT['date_of_event'];?></h5>
+				<h5><?php echo $evenT['location'];?></h5>
+				<p><?php echo $evenT['description'];?></p>
+			</div>
+                    
+                  
+                <!-- list car ends -->
+             <?php }
+             }?>
+          </div>
         </div>
-    </div>
+      </div>
+	</div>
 </div>
-<!--events ends-->
-				
+
+
+<!-- map block -->
+<div class="map">
+	<div class="container" style="width: 100%; padding: 0; margin: 0;">
+		<div class="row" style="margin: 0;">
+			<div class="col-md-4">
+				<div class="para">
+					<br>
+					<h1>Plan Your Visit</h1><br>
+				    <h4>visit Our Map  To know more About zoo location</h4>
+			    </div>
+			</div>
+			<div class="col-md-8" style="margin-right: 0; padding-right: 0;">
+				<img src="images/map.bmp" style="width: 100%; height: 450px;" class="img-responsive">
+			</div>
+		</div>
+	</div>
+</div>
+<!-- map block ends -->
+
+	
 <?php require 'includes/footer.php'; ?>
 
 

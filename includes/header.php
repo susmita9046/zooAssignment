@@ -30,7 +30,9 @@
 								<span class="icon-bar"></span>
 							</button>
 							<div class="navbar-brand">
-								<h1><a href="index.php">zoo planet</a></h1>
+								<h1><a href="index.php">
+								  <img src="images/logo.jpg" style="width: 70px;">
+								</a></h1>
 							</div>
 						</div>
 

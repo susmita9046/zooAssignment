@@ -15,9 +15,7 @@
         header('Location:ticketlist.php?success=Ticket Deletted Successfully');
         }
                                }
-
 ?>
-
 <?php require 'includes/userheader.php'; ?>
 <div class="container">
         <div class="row mb-5">
@@ -25,8 +23,10 @@
             <div class="row pt-md-5 mt-md-3 mb-5 align-items-center">
               <div class="col-xl-12 col-12 mb-4 mb-xl-0">
                 <div class="row">
-                  <div class="col-xl-6"><h4 class="text-muted mb-2">Your Pending Rent</h4></div>
-                  <!-- <div class="col-xl-6 text-right"><a href="addevent.php" class="btn btn-info btn-sm">Add New</a></div> -->
+                  <br>
+                  <!-- <div class="col-xl-6"><h4 class="text-muted mb-2">Your Booking Details</h4></div> -->
+                  <h2>Your Booking Details</h2> 
+                  <br><br>
                 </div>
                 <table class="table table-striped bg-light">
                   
@@ -76,4 +76,5 @@
           </div>
         </div>
       </div>
-
+<br><br><br><br>
+<?php require 'includes/footer.php'; ?>

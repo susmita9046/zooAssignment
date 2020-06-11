@@ -14,11 +14,11 @@ if(isset($_POST['save'])){
         $_POST['userId'] = $_SESSION['UserId'];
          // echo '<pre>'; print_r($_POST); die();
         $stmt->execute($_POST);
-        // hader('Location:contact.php?success=contacts Added Successfully');
-        echo "Ticket added Successfully";
+        header('Location:buytickets.php?success=tickets Added Successfully');
+        // echo "Ticket added Successfully";
 }
 ?>
-<?php require 'includes/header.php'; ?>
+<?php require 'includes/userheader.php'; ?>
 
 <style type="text/css">
   body {
@@ -68,9 +68,16 @@ if(isset($_POST['save'])){
           <div class="container">
             <form class="form-signin"  method="POST" action="" class="col-xl-6" enctype="multipart/form-data">
               <div class="form_details">
+                 <?php
+                    if(isset($_GET['success'])){
+                      echo ' | <span class="error">' . $_GET['success'] . '</span>';
+                    }
+                    ?>
                 <h2>Per Person Adult $2</h2>
                 <h2>Per Person Child $1</h2><br>
-                <h3>Tickets form</h3> 
+                <h3>Tickets form
+                
+                </h3> 
                 <br><br>
                 <label>Number of Adult</label>
                 <input name="no_of_adult" class="form-control" id="adult_number" required="" autofocus="" />

@@ -26,11 +26,10 @@ if(isset($_POST['save'])){
     $_POST['image'] = $image;
     // echo '<pre>'; print_r($_POST); die();
     $stmt->execute($_POST);
-    // hader('Location:contact.php?success=contacts Added Successfully');
-    echo "sponser added Successfully";
+    header('Location:sponserr.php?success=sponsers Added Successfully');
     }
 ?>
-<?php require 'includes/header.php'; ?>
+<?php require 'includes/userheader.php'; ?>
 
 <style type="text/css">
       body {
@@ -64,6 +63,11 @@ if(isset($_POST['save'])){
       <div class="wrapper">
         <form class="form-signin"  method="POST" action="" class="col-xl-6" enctype="multipart/form-data">
             <div class="form_details">
+               <?php
+                    if(isset($_GET['success'])){
+                      echo ' | <span class="error">' . $_GET['success'] . '</span>';
+                    }
+                    ?>
               <h3>Sponser form</h3> 
               <br><br>
               <label>Add Image</label>

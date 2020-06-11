@@ -112,34 +112,45 @@ if(isset($_POST['keyword'])){
            <?php 
             if($eventList->rowCount() > 0){
               foreach ($eventList as $evenT) {?>
-                <!-- list car -->
-                <!-- <div class="col-md-3 ">
-                  <div class="card info" style="color:black;">   -->    
-                  <div class="col-md-3 event-grid">
+                
+                <div class="col-md-3 event-grid">
 				<a href="#" class="mask">
-				<img src ="http://localhost/zooassignment/admin/image/<?php echo $evenT['image'];?>"></a>
+				<img height="300" src  ="http://localhost/zooassignment/admin/image/<?php echo $evenT['image'];?>"></a>
 			    </div>             
-                    <div class="col-md-3 event-grid1">
+                <div class="col-md-3 event-grid1">
 				<h4><?php echo $evenT['event_name'] ?></h4>
 				<h5><?php echo $evenT['date_of_event'];?></h5>
 				<h5><?php echo $evenT['location'];?></h5>
 				<p><?php echo $evenT['description'];?></p>
 			</div>
                     
-                  </div>
-                </div>
-               </div> 
+                  
                 <!-- list car ends -->
              <?php }
-            }else{?>
-              <div>Soory we couldnot find animals you are searching.</div>
-            <?php }?>
+             }?>
           </div>
         </div>
       </div>
 	</div>
 </div>
 <!--events ends-->
+<div class="map">
+	<div class="container" style="width: 100%; padding: 0; margin: 0;">
+		<div class="row" style="margin: 0;">
+			<div class="col-md-4">
+				<div class="para">
+					<br>
+					<h1>Plan Your Visit</h1><br>
+				    <h4>visit Our Map  To know more About zoo location</h4>
+			    </div>
+			</div>
+			<div class="col-md-8" style="margin-right: 0; padding-right: 0;">
+				<img src="images/map.bmp" style="width: 100%; height: 450px;" class="img-responsive">
+			</div>
+		</div>
+	</div>
+</div>
+<!-- map block ends -->
 				
 <?php require 'includes/footer.php'; ?>
 

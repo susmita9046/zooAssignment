@@ -32,7 +32,7 @@
                   <div class="col-xl-6"><h1 class="text-muted mb-2">Your Sponsherhip Details</h1></div><br><br>
                   <!-- <div class="col-xl-6 text-right"><a href="addevent.php" class="btn btn-info btn-sm">Add New</a></div> -->
                 </div>
-                <table class="table table-striped bg-light text-center">
+                <table class="table table-striped bg-light">
                   
                   <thead>
                      <th>S.N</th>
