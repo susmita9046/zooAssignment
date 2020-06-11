@@ -172,7 +172,7 @@ if(isset($_POST['save'])){
                        <!--  <label>Date Of Birth Animal</label>
                         <input type=“date” name="date_of_birth" class="form-control"> -->
                         <label>Date Of Birth Animal</label>
-                        <input name="date_of_birth" class="form-control">
+                        <input name="date_of_birth" type="date" class="form-control">
                         <br>
                        
                         <label for="status" class="col-md-1 control-label" name="gender">Gender</label>
@@ -197,7 +197,7 @@ if(isset($_POST['save'])){
                         <input name="global_population" class="form-control">
                         <br>
                         <label>Date Animl Joined</label>
-                        <input name="date_of_joined" class="form-control">
+                        <input name="date_of_joined" type="date" class="form-control">
                         <br>
                         <label>Animal dimension(height/weight)</label>
                         <input name="dimension" class="form-control">

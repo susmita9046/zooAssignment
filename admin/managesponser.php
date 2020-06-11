@@ -60,7 +60,7 @@
               <div class="col-xl-12 col-12 mb-4 mb-xl-0">
                 <div class="row">
                   <div class="col-xl-6"><h4 class="text-muted mb-2">Sponser</h4></div>
-                  <div class="col-xl-6 text-right"><a href="addanimals.php" class="btn btn-info btn-sm">Add New</a></div>
+                  <!-- <div class="col-xl-6 text-right"><a href="addanimals.php" class="btn btn-info btn-sm">Add New</a></div> -->
                 </div>
                 <table class="table table-striped bg-light text-center">
                   
@@ -93,7 +93,7 @@
                       <tr>
                         <td><?php echo $i++; ?></td> 
                         <td><?php echo $sponsers['username'] ?></td>
-                        <td><?php echo $sponsers['image'] ?></td>
+                        <td><img src="uploads/<?php echo $sponsers['image'];?>" width="40" height="30"></td>
                         <td><?php echo $sponsers['company_name'] ?></td>
                         <td><?php echo $sponsers['exiting_customer'];?></td>
                         <td><?php echo $sponsers['primary_phone_number'];?></td>

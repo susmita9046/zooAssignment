@@ -82,7 +82,7 @@ if(isset($_FILES['image'])){
                        
                         <br>
                         <label>Event Name</label>
-                        <input name="event_name" class="form-control" >
+                        <input name="event_name" type="text" class="form-control" >
                         <br>
                         <label>Add Image</label>
                         <input type="file" class="form-control-file" id="car-img" name="image">
@@ -93,16 +93,16 @@ if(isset($_FILES['image'])){
                        <!--  <label>Date Of Birth Animal</label>
                         <input type=“date” name="date_of_birth" class="form-control"> -->
                         <label>Date of event</label>
-                        <input name="date_of_event" class="form-control">
+                        <input name="date_of_event" type ="date" class="form-control">
                         <br>
                         <label>End Of Event Date</label>
-                        <input name="end_of_event" class="form-control">
+                        <input name="end_of_event" type ="date" class="form-control">
                         <br>
                         <label>location</label>
                         <input name="location" class="form-control">
                         <br>
                         <label>Description</label>
-                        <textarea name="description" class="form-control" rows="5"></textarea>
+                        <textarea name="description" type="text" class="form-control" rows="5"></textarea>
                         <br> 
                     </div>
                     <div class="form-group">

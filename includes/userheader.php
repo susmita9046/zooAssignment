@@ -1,7 +1,9 @@
 <?php
+// session_start();
 require 'admin/db/conn.php';
-$User = $pdo->prepare("select * from user where role = 0");
-$User->execute();
+$user = $pdo->prepare("select * from user where u_id = :UserId");
+$user->execute(['UserId' => $_SESSION['UserId']]);
+$user = $user->fetch();
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -46,12 +48,10 @@ $User->execute();
 								<li><a href="about.php">About</a></li>
 								<li><a href="contact.php">Contact</a></li>
 								<li class="dropdown">
-								<a href="usermanage.php" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user">
-                                <?php foreach ($User as $userr) {?>
-                                    <?php echo $userr['username'] ?>
-								</i> 
-								<span class="caret"></span>
-							    <?php } ?> </a>
+								<a href="usermanage.php" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+									<i class="fas fa-user"><?php echo $user['username']; ?></i> 
+									<span class="caret"></span>
+							    </a>
                                 <ul class="dropdown-menu">
 								<li><a href="ticketlist.php">Your Tickets List</a></li>
 								<li><a href="sponserlist.php">Your Sponser List</a></li>

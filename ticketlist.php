@@ -28,7 +28,7 @@
                   <div class="col-xl-6"><h4 class="text-muted mb-2">Your Pending Rent</h4></div>
                   <!-- <div class="col-xl-6 text-right"><a href="addevent.php" class="btn btn-info btn-sm">Add New</a></div> -->
                 </div>
-                <table class="table table-striped bg-light text-center">
+                <table class="table table-striped bg-light">
                   
                   <thead>
                     <tr class="text-muted">
@@ -38,6 +38,7 @@
                       <th>Booked Date</th>
                       <th>Total</th>
                       <th>Status</th>
+                      <th>Action</th>
                       
                     </tr>
                   </thead>
@@ -51,7 +52,16 @@
                         <td><?php echo $Ticket['no_of_child'];?></td> 
                         <td><?php echo $Ticket['booked_date'];?></td> 
                         <td><?php echo $Ticket['total'];?></td> 
-                        <td></td>
+                        <td>
+                          <?php
+                            if($Ticket['booking_status'] == 0){
+                              echo 'Pending';
+                            }
+                            else{
+                              echo 'Confirmed';
+                            }
+                          ?>
+                        </td>
                         <td>
                         <!-- <a href="editEvent.php?eid=<?php ;?>" class="btn btn-info btn-sm">Edit</a> -->
                         <a href="ticketlist.php?did=<?php echo $Ticket['t_id'];?>" class="btn btn-danger btn-sm">Cancel</a>

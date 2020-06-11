@@ -72,7 +72,7 @@ if(isset($_POST['update'])){
                     <div class="form-group">
                         <br>
                         <label>Event Name</label>
-                        <input name="event_name" value="<?php echo $row['event_name'];?>" class="form-control">
+                        <input name="event_name" type="text" value="<?php echo $row['event_name'];?>" class="form-control">
                         <br>
                         <label>Add Image</label>
                         <!-- <input type="file" class="form-control" name="image"> -->
@@ -80,11 +80,11 @@ if(isset($_POST['update'])){
                         <br>
                         <label>Date of event</label>
                         <!-- <input name="date_of_event" class="form-control"> -->
-                        <input name="date_of_event" value="<?php echo $row['date_of_event'];?>" class="form-control">
+                        <input name="date_of_event" type="date" value="<?php echo $row['date_of_event'];?>" class="form-control">
                         <br>
                         <label>End Of Event Date</label>
                         <!-- <input name="end_of_event" class="form-control"> -->
-                        <input name="end_of_event" value="<?php echo $row['end_of_event'];?>" class="form-control">
+                        <input name="end_of_event" type="date" value="<?php echo $row['end_of_event'];?>" class="form-control">
                         <br>
                         <label>location</label>
                         <!-- <input name="location" class="form-control"> -->

@@ -20,7 +20,7 @@ if(isset($_POST['save'])){
          $image = '';
     }
     $stmt = $pdo->prepare("INSERT INTO
-            sponshership_form(userId,image,company_name,exiting_customer,primary_phone_number,sec_phone_number,contact_details,animal_sponser_id,start_date_spon,signature_area,sponsershipCat) values(:userId, :image,:company_name,:exiting_customer,:primary_phone_number,:sec_phone_number,:contact_details,:animal_sponser_id,:start_date_spon,:signature_area,:sponsershipCat)");
+            sponshership_form(userId,image,company_name,exiting_customer,primary_phone_number,sec_phone_number,contact_details,animal_sponser_id,start_date_spon,signature_area,sponsershipCat) values(:userId,:image,:company_name,:exiting_customer,:primary_phone_number,:sec_phone_number,:contact_details,:animal_sponser_id,:start_date_spon,:signature_area,:sponsershipCat)");
     unset($_POST['save']);
     $_POST['userId'] = $_SESSION['UserId'];
     $_POST['image'] = $image;

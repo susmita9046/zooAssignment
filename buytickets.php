@@ -8,8 +8,9 @@ require 'admin/db/conn.php';
 // $ticket->execute();
 
 if(isset($_POST['save'])){
-        $stmt = $pdo->prepare("insert into ticket(userId,no_of_adult,no_of_child,booked_date,total) values(:userId, :no_of_adult, :no_of_child, :booked_date, :total)");
+        $stmt = $pdo->prepare("insert into ticket(userId,no_of_adult,no_of_child,booked_date,total,booking_status) values(:userId, :no_of_adult, :no_of_child, :booked_date, :total, :booking_status)");
         unset($_POST['save']);
+        $_POST['booking_status'] = 0;
         $_POST['userId'] = $_SESSION['UserId'];
          // echo '<pre>'; print_r($_POST); die();
         $stmt->execute($_POST);

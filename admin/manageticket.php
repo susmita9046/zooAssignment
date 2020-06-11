@@ -1,7 +1,7 @@
 <?php
   session_start();
   if(!isset($_SESSION['AUserId'])){
-  header('Location:login.php');
+    header('Location:login.php');
   }
   require 'db/conn.php';
   $tickets = $pdo->prepare("select ticket.*, user.username   
@@ -10,20 +10,26 @@
                           ");
   $tickets->execute();
 
+if(isset($_GET['did'])){
+  $tickets = $pdo->prepare('select * from tickets where t_id = :did');
+  $tickets ->execute($_GET);
+  if($tickets->rowCount() == 0) {
+    $stmt = $pdo->prepare('DELETE FROM ticket WHERE t_id = :did');
+    $stmt->execute($_GET);
+    header('Location:manageticket.php?success=Ticket Deleted Successfully');
+  }
+  else{
+    $_GET['success'] = 'Can not be deleted because there are Animals under this AnimalType';
+  }
+}
 
-    if(isset($_GET['did'])){
-    $tickets = $pdo->prepare('select * from tickets where t_id = :did');
-    $tickets ->execute($_GET);
-      if($tickets->rowCount() == 0) {
-        $stmt = $pdo->prepare('DELETE FROM ticket WHERE t_id = :did');
-        $stmt->execute($_GET);
-        header('Location:manageticket.php?success=manage Deletted Successfully');
-        }
-        else{
-        $_GET['success'] = 'Can not be deleted because there are Animals under this AnimalType';
-            }
-                         }
- ?> 
+if(isset($_GET['cid'])){
+  $stmt = $pdo->prepare('update ticket set booking_status = 1');
+  $stmt->execute();
+  header('Location:manageticket.php?success=ticket confirmed Successfully');
+}
+
+?> 
 <!doctype html>
 <html lang="en">
   <head>
@@ -72,7 +78,16 @@
             <div class="row pt-md-5 mt-md-3 mb-5 align-items-center">
               <div class="col-xl-12 col-12 mb-4 mb-xl-0">
                 <div class="row">
-                  <div class="col-xl-6"><h4 class="text-muted mb-2">Manage Tickets</h4></div>
+                  <div class="col-xl-12">
+                    <h4 class="text-muted mb-2">
+                    Manage Tickets
+                    <?php
+                    if(isset($_GET['success'])){
+                      echo ' | <span class="error">' . $_GET['success'] . '</span>';
+                    }
+                    ?>
+                    </h4>
+                  </div>
                   <!-- <div class="col-xl-6 text-right"><a href="addevent.php" class="btn btn-info btn-sm">Add New</a></div> -->
                 </div>
                 <table class="table table-striped bg-light text-center">
@@ -85,6 +100,7 @@
                       <th>No Of Child</th>
                       <th>Booked Date</th>
                       <th>Total Amount</th>
+                      <th>Booking Status</th>
                       <th>Action</th>
                       
                     </tr>
@@ -102,7 +118,7 @@
                         <td><?php echo $tickett['total'];?></td> 
                         <td>
                             <?php 
-                                  if($tickett['booked'] == 0){
+                                  if($tickett['booking_status'] == 0){
                                       echo 'Not Confirmed';
                                   }
                                   else{
@@ -113,9 +129,9 @@
                         </td>
                         <td>
                         <!-- <a href="editEvent.php?eid=<?php ;?>" class="btn btn-info btn-sm">Edit</a> -->
-                        <?php if($tickett['booked'] == 0){?>
-                                                <a href="manageticket.php?eid=<?php echo $tickett['t_id'];?>" class="btn btn-sm btn-icon btn-primary">Confirm</a>
-                                            <?php }?>
+                        <?php if($tickett['booking_status'] == 0){?>
+                          <a href="manageticket.php?cid=<?php echo $tickett['t_id'];?>" class="btn btn-sm btn-icon btn-primary">Confirm</a>
+                        <?php }?>
                         <a href="manageticket.php?did=<?php echo $tickett['t_id'];?>" class="btn btn-danger btn-sm">Delete</a>
                         </td>
                       </tr>
