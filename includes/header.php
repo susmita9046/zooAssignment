@@ -1,3 +1,6 @@
+<?php
+// require 'admin/db/conn.php';
+?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -15,10 +18,10 @@
 </head>
 <body>
 	<!--header-->
-	<div class="header" style="background-color: lightblue !important">
+	<div class="header" style="">
 		<div class="container">
-			<div class="header-top" style="background-color: lightblue">
-				<nav class="navbar navbar-default" style="background-color: lightblue; border: none;">
+			<div class="header-top" style="">
+				<nav class="navbar navbar-default" style="">
 					<div class="container">
 						
 						<!-- Brand and toggle get grouped for better mobile display -->
@@ -30,9 +33,12 @@
 								<span class="icon-bar"></span>
 							</button>
 							<div class="navbar-brand">
-								<h1><a href="index.php">
-								  <img src="images/logo.jpg" style="width: 70px;">
-								</a></h1>
+								<img src="images/logo.jpg" style="width: 70px; height: 65px; border-radius: 50%; margin-left: -15px;">
+								<!-- <div class="imgg">
+									<h1><a href="index.php">
+									  <img src="images/logo.jpg" style="width: 70px;">
+									</a></h1>
+								</div> -->
 							</div>
 						</div>
 
@@ -50,8 +56,29 @@
 									</ul>
 								</li> -->
 								<li><a href="contact.php">Contact</a></li>
-								<li><a href="login.php">Login</a></li>
-								<li><a href="register.php">Register</a></li>
+								<?php if(isset($_SESSION['UserId'])){
+									$userId = $_SESSION['UserId'];
+									$user = $pdo->prepare("select * from user where u_id = '$userId'");
+									$user->execute();
+									$user = $user->fetch();
+									// print_r($user); die();
+									?>
+									<li class="dropdown">
+										<a href="usermanage.php" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+											<i class="fas fa-user"><?php echo $user['username']; ?></i> 
+											<span class="caret"></span>
+									    </a>
+		                                <ul class="dropdown-menu">
+											<li><a href="ticketlist.php">Your Tickets List</a></li>
+											<li><a href="sponserlist.php">Your Sponser List</a></li>
+											<li><a href="logout.php">Logout</a></li>
+										</ul>
+									</li>
+								<?php }
+								else {?>
+									<li><a href="login.php">Login</a></li>
+									<li><a href="register.php">Register</a></li>
+								<?php }?>
 							</ul>
 						</div><!-- /.navbar-collapse -->
 					

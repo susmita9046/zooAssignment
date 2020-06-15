@@ -8,8 +8,7 @@ $animalTypeList = $pdo->prepare('SELECT * FROM animal_category');
 $animalTypeList->execute();
 
 if(isset($_POST['save'])){
-     
-    // image updoad
+     // image updoad
     if(isset($_FILES['image'])){
             $image = $_FILES['image']['name'];
             $tmp_loc = $_FILES['image']['tmp_name'];
@@ -20,7 +19,6 @@ if(isset($_POST['save'])){
          $image = '';
     }
     // image upload ends
-
     $stmt = $pdo->prepare("insert into 
             animals(animalcategoryId,species_name,name,date_of_birth,gender,avg_life_span,species_category,dietary,natural_habitat,global_population,date_of_joined,dimension,image,gestational_period,mammal_category,avg_body_temp,reproduction_type,avg_clutch_size,avg_offspring,nest_const_metd,aclutch_size,wing_span,ability_to_fly,birds_color_variant,fish_avg_body_temp,water_type,fishes_color_variant) values(:animalcategoryId,:species_name,:name, :date_of_birth,:gender,:avg_life_span, :species_category,:dietary,:natural_habitat,:global_population,:date_of_joined,:dimension,:image,:gestational_period,:mammal_category,:avg_body_temp,:reproduction_type,:avg_clutch_size,:avg_offspring,:nest_const_metd,:aclutch_size,:wing_span,:ability_to_fly,:birds_color_variant,:fish_avg_body_temp,:water_type,:fishes_color_variant)");
 
@@ -82,7 +80,7 @@ if(isset($_POST['save'])){
           <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
             <div class="row pt-md-5 mt-md-3 mb-5 align-items-center">
               <div class="col-xl-12 col-12 mb-4 mb-xl-0">
-                <h4 class="text-muted mb-2">Add Animal Type
+                <h4 class="text-muted mb-2">Add Animal
                 <?php
                     if(isset($_GET['success'])){
                       echo ' | <span class="error">' . $_GET['success'] . '</span>';
@@ -116,7 +114,7 @@ if(isset($_POST['save'])){
                                     <option value="Eutheria">Eutheria</option>
                                 </select>
                                 <br>
-                                Average Body Temperature : <input class="form-control grey-glow" type="text" name="avg_body_temp"><br>
+                                Average Body Temperature : <input class="form-control grey-glow" type="text" name="avg_body_temp" required="" autofocus=""><br>
 
                             </div>
                             <div id="reptiles">
@@ -127,18 +125,18 @@ if(isset($_POST['save'])){
                                     <option value="Liver Bearer">Liver Bearer</option>
                                 </select>
                                 <br>
-                                Average Clutch Size : <input class="form-control grey-glow" type="text" name="avg_clutch_size"><br>
-                                Average Number of Offspring : <input class="form-control grey-glow" type="text" name="avg_offspring"><br>
+                                Average Clutch Size : <input class="form-control grey-glow" type="text" name="avg_clutch_size" required="" autofocus=""><br>
+                                Average Number of Offspring : <input class="form-control grey-glow" type="text" name="avg_offspring" required="" autofocus=""><br>
                             </div>
 
                             <div id="birds">
                                 <br>
-                                Nest Construction Method : <input class="form-control grey-glow" type="text" name="nest_const_metd"><br>
+                                Nest Construction Method : <input class="form-control grey-glow" type="text" name="nest_const_metd" required="" autofocus=""><br>
                                 <br>
-                                Clutch Size : <input class="form-control grey-glow" type="text" name="aclutch_size"><br>
-                                Wingspan : <input class="form-control grey-glow" type="text" name="wing_span"><br>
-                                Ability to Fly : <input checked="" class="form-control grey-glow" type="radio" name="ability_to_fly" value="Yes" selected="selected"> Yes 
-                                <input class="form-control grey-glow" type="radio" name="ability_to_fly" value="No"> No<br>
+                                Clutch Size : <input class="form-control grey-glow" type="text" name="aclutch_size" required="" autofocus=""><br>
+                                Wingspan : <input class="form-control grey-glow" type="text" name="wing_span" required="" autofocus=""><br>
+                                Ability to Fly : <input checked="" class="form-control grey-glow" type="radio" name="ability_to_fly" value="Yes" selected="selected" required="" autofocus=""> Yes 
+                                <input class="form-control grey-glow" type="radio" name="ability_to_fly" value="No" required="" autofocus=""> No<br>
                                 Color Variant
                                 <select name="birds_color_variant" class="form-control grey-glow">
                                     <option value="Red">Red</option>
@@ -150,7 +148,7 @@ if(isset($_POST['save'])){
 
                             <div id="fishes">
                                 <br>
-                                Average Body Temperature : <input class="form-control grey-glow" type="text" name="fish_avg_body_temp"><br>
+                                Average Body Temperature : <input class="form-control grey-glow" type="text" name="fish_avg_body_temp" required="" autofocus=""><br>
                                Water Type
                                 <select name="water_type" class="form-control grey-glow">
                                     <option value="Salty">Salty</option>
@@ -169,16 +167,16 @@ if(isset($_POST['save'])){
                         <!-- <input name="type" class="form-control">     -->
                         <br>
                         <label>Species Name</label>
-                        <input name="species_name" class="form-control">
+                        <input name="species_name" class="form-control" required="" autofocus="">
                         <br>
                         <label>Animals Given Name</label>
-                        <input name="name" class="form-control">
+                        <input name="name" class="form-control" required="" autofocus="">
                         <br>
 
                        <!--  <label>Date Of Birth Animal</label>
                         <input type=“date” name="date_of_birth" class="form-control"> -->
                         <label>Date Of Birth Animal</label>
-                        <input name="date_of_birth" type="date" class="form-control">
+                        <input name="date_of_birth" type="date" class="form-control" required="" autofocus="">
                         <br>
                        
                         <label for="status" class="col-md-1 control-label" name="gender">Gender</label>
@@ -188,25 +186,25 @@ if(isset($_POST['save'])){
 
                         <br><br>
                         <label>Average Life Span(month/year)</label>
-                        <input name="avg_life_span" class="form-control">
+                        <input name="avg_life_span" class="form-control" required="" autofocus="">
                         <br>
                         <label>Species category/Classification</label>
-                        <input name="species_category" class="form-control">
+                        <input name="species_category" class="form-control" required="" autofocus="">
                         <br>
                         <label>Dietary Requirements</label>
-                        <input name="dietary" class="form-control">
+                        <input name="dietary" class="form-control" required="" autofocus="">
                         <br>
                         <label>Natural Habitat Description</label>
-                        <input name="natural_habitat" class="form-control">
+                        <input name="natural_habitat" class="form-control" required="" autofocus="">
                         <br>
                         <label>Global Population Distribution</label>
-                        <input name="global_population" class="form-control">
+                        <input name="global_population" class="form-control" required="" autofocus="">
                         <br>
                         <label>Date Animl Joined</label>
-                        <input name="date_of_joined" type="date" class="form-control">
+                        <input name="date_of_joined" type="date" class="form-control" required="" autofocus="">
                         <br>
                         <label>Animal dimension(height/weight)</label>
-                        <input name="dimension" class="form-control">
+                        <input name="dimension" class="form-control" required="" autofocus="">
                         <br>
                         <label>Add Image</label>
                         <input type="file" class="form-control-file" name="image">

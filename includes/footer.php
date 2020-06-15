@@ -19,16 +19,7 @@
 					</ul>
 				</div>
 				<div class="col-md-3 specials1">
-					<h3>contact</h3>
-					<address>
-						<p>The Company Name Inc.</p>
-						<p>Glasgow,Le 99 Pr 45.</p>
-						<p>Telephone : +1 800 603 6035</p>
-						<p>FAX : +1 800 889 9898</p>
-						<p>Email : <a href="mailto:example@mail.com">example@mail.com</a></p>
-					</address>
-				</div>
-				<div class="col-md-3 specials1">
+					
 					<h3>social</h3>
 					<ul>
 						<li><a href="#">facebook</a></li>
@@ -36,6 +27,16 @@
 						<li><a href="#">google+</a></li>
 						<li><a href="#">vimeo</a></li>
 					</ul>
+				</div>
+				<div class="col-md-3 specials1">
+					<address>
+						<h3>contact</h3>
+						<p>The Company Name Inc.</p>
+						<p>Glasgow,Le 99 Pr 45.</p>
+						<p>Telephone : +1 800 603 6035</p>
+						<p>FAX : +1 800 889 9898</p>
+						<p>Email : <a href="mailto:example@mail.com">example@mail.com</a></p>
+					</address>
 				</div>
 				<div class="clearfix"></div>
 			</div>

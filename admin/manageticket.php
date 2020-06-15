@@ -24,7 +24,9 @@ if(isset($_GET['did'])){
 }
 
 if(isset($_GET['cid'])){
-  $stmt = $pdo->prepare('update ticket set booking_status = 1');
+  $id = $_GET['cid'];
+  // die($id);
+  $stmt = $pdo->prepare("update ticket set booking_status = 1 where t_id = '$id'");
   $stmt->execute();
   header('Location:manageticket.php?success=ticket confirmed Successfully');
 }

@@ -1,3 +1,6 @@
+<?php
+require 'admin/db/conn.php';
+?>
 <?php require 'includes/header.php'; ?>
 
 <div class="banner-header">
@@ -11,8 +14,8 @@
 		<div class="container">
 			<div class="about-grids">
 				<div class="col-md-4 about-grid">
-					<h3>Who we are</h3>
-					<img src="images/p5.jpg" class="img-responsive" alt="/">
+					<h3>Map Of Zoo</h3>
+					<img src="images/map.bmp" class="img-responsive" alt="/">
 					<div class="about1">
 						<h4>Praesent justo dolor, lobortis</h4>
 						<p>Fusce euismod consequat ante. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Pellentesque sed dolor. Aliquam congue fermentum nisl. Mauris accumsan nulla vel diam. Sed in lacus ut enim adipiscing aliquet.</p>

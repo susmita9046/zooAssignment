@@ -72,9 +72,9 @@ if(isset($_POST['save'])){
                 <form method="POST" action="" class="col-xl-6">
                     <div class="form-group">
                         <label>Animal Type</label>
-                        <input name="type" class="form-control">
+                        <input name="type" class="form-control" required="" autofocus="">
                         <label>Description</label>
-                        <textarea name="description" class="form-control" rows="5"></textarea>
+                        <textarea name="description" class="form-control" rows="5" required="" autofocus=""></textarea>
                     </div>
                     <div class="form-group">
                         <input type="submit" name="save" class="btn btn-dark" value="Save">

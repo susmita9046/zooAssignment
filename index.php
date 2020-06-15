@@ -4,22 +4,31 @@ require 'admin/db/conn.php';
   $eventList = $pdo->prepare("select * from event");
   $eventList->execute();
 
+$animals = '';
+
 if(isset($_POST['keyword'])){
 	// print_r($_POST); die();
 	$keyword = $_POST['keyword'];
-    $search_animals = $pdo->prepare("SELECT * from animals WHERE name like '%$keyword%'");
-	$search_animals->execute();
+    
+    $animals = $pdo->prepare("SELECT * from animals WHERE 
+    	                            name like '%$keyword%' 
+    	                            OR gender like '%$keyword%'
+    	                            OR species_category like '%$keyword%'
+    	                            OR ability_to_fly like '%$keyword%'
+    	                            OR water_type like '%$keyword%'
+    	                            OR reproduction_type like '%$keyword%'");
+	$animals->execute();
 }
 ?>
 <?php require 'includes/header.php'; ?>
 
-<?php if(!isset($search_animals)){?>
+<?php if(!isset($_POST['keyword'])){?>
 	<!-- header banner -->
 	<div class="header-banner">
 		<div class="container">
 			<div class="head-banner">
-				<h3>Dave Zucconi Conservation Center</h3>
-				<p>Donec dui velit, hendrerit id pharetra nec, posuere porta nisl. Donec magna nulla, commodo in ultrices faucibus lacus aliquet.Donec dui velit, hendrerit id pharetra nec</p>
+				<h3>Claybrook Zoo </h3>
+				<!-- <p>Donec dui velit, hendrerit id pharetra nec, posuere porta nisl. Donec magna nulla, commodo in ultrices faucibus lacus aliquet.Donec dui velit, hendrerit id pharetra nec</p> -->
 			</div>
 			<div class="banner-grids">
 				<!-- <div class="col-md-8 banner-grid">
@@ -67,12 +76,14 @@ if(isset($_POST['keyword'])){
     		</div>
 			<div class="welcome-grids">
 				<?php 
-				if(isset($search_animals)){
-					$animals = $search_animals;
-				}
-				else{
+				if(!isset($_POST['keyword'])){
 					$animals = $pdo->prepare('select * from animals where animalcategoryId = ' . MAMMALS);
 					$animals->execute();
+				}
+				else{
+					if($animals->rowCount() == 0){
+						echo 'No result found';
+					}
 				}
 				foreach($animals as $row) {?>
 					<div class="col-md-3 welcome-grid">

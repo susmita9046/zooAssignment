@@ -1,12 +1,12 @@
 <?php
-    session_start();
+    // session_start();
+	require 'admin/db/conn.php';
     if(!isset($_SESSION['UserId'])){
         header('Location:login.php');
     }
 ?>
 <?php
 require 'constants.php';
-require 'admin/db/conn.php';
   $eventList = $pdo->prepare("select * from event");
   $eventList->execute();
 

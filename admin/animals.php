@@ -81,12 +81,13 @@
                     <tr class="text-muted">
                       <th>S.N</th>
                       <th>Animal Category</th>
+                      <th>Species Category/classification</th>
                       <th>Name</th>
                       <!-- <th>Animal name</th> -->
                       <th>DateOfBirth</th>
                       <th>Gender</th>
                       <th>Average Life Span</th>
-                      <th>Species Category</th>
+                      
                       <th>Dietary Reqiurements</th>
                       <th>Natural habitat</th>
                       <th>GPD</th>

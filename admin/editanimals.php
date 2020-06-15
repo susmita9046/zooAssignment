@@ -72,7 +72,7 @@ if(isset($_POST['update'])){
           <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
             <div class="row pt-md-5 mt-md-3 mb-5 align-items-center">
               <div class="col-xl-12 col-12 mb-4 mb-xl-0">
-                <h4 class="text-muted mb-2">Add Animal Type</h4>
+                <h4 class="text-muted mb-2">Edit Animal</h4>
                 <hr>
                 
                 <form method="POST" action="" class="col-xl-6">
@@ -204,7 +204,7 @@ if(isset($_POST['update'])){
                     </div>
                     <div class="form-group">
                         <input type="submit" name="update" class="btn btn-dark" value="Save">
-                        <a href="animaltype.php" class="btn btn-outline-dark ml-1"><i class="fa fa-close"></i> Back</a>
+                        <a href="animals.php" class="btn btn-outline-dark ml-1"><i class="fa fa-close"></i> Back</a>
                     </div>
                 </form>
 

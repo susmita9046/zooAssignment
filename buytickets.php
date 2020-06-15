@@ -82,7 +82,7 @@ if(isset($_POST['save'])){
                 <label>Number of Adult</label>
                 <input name="no_of_adult" class="form-control" id="adult_number" required="" autofocus="" />
                 <br>
-                <label>No of child</label>
+                <label>No of child(under age of 5)</label>
                 <input name="no_of_child" class="form-control" id="child_number" required="" autofocus="">
                 <br>
           

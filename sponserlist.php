@@ -1,9 +1,10 @@
 <?php
-    session_start();
+    // session_start();
+    require 'admin/db/conn.php';
     if(!isset($_SESSION['UserId'])){
         header('Location:login.php');
     }
-    require 'admin/db/conn.php';
+    // require 'admin/db/conn.php';
     $sponsorList = $pdo->prepare("select sponshership_form.*, user.username, animals.name as animalName ,sponsership.yearly_fee   as yearlyFee  
                               from sponshership_form 
                               join user on sponshership_form.userId = user.u_id
@@ -62,7 +63,7 @@
                       <tr>
                         <td><?php echo $i++; ?></td> 
                         <td><?php echo $sponsers['username'] ?></td>
-                        <td><?php echo $sponsers['image'] ?></td>
+                        <td><img src="uploads/<?php echo $sponsers['image'];?>" width="70" height="50"></td>
                         <td><?php echo $sponsers['company_name'] ?></td>
                         <td><?php echo $sponsers['exiting_customer'];?></td>
                         <td><?php echo $sponsers['primary_phone_number'];?></td>

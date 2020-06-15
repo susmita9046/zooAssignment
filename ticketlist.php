@@ -1,15 +1,16 @@
 <?php
-    session_start();
+    // session_start();
+    require 'admin/db/conn.php';
     if(!isset($_SESSION['UserId'])){
         header('Location:login.php');
     }
-    require 'admin/db/conn.php';
     $tickets = $pdo->prepare("select * from ticket");
     $tickets->execute();
+
     if(isset($_GET['did'])){
-    $ticket = $pdo->prepare('select * from ticket where t_id = :did');
-    $ticket ->execute($_GET);
-      if($ticket->rowCount() == 0) {
+    $Ticket = $pdo->prepare('select * from Ticket where t_id = :did');
+    $Ticket ->execute($_GET);
+      if($Ticket->rowCount() == 0) {
         $stmt = $pdo->prepare('DELETE FROM ticket WHERE t_id = :did');
         $stmt->execute($_GET);
         header('Location:ticketlist.php?success=Ticket Deletted Successfully');
