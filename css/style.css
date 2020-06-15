@@ -457,7 +457,7 @@ span.glyphicon.glyphicon-user:hover {
 }
 /*--about--*/
 .banner-header {
-  background: url("../images/banner1.jpg")no-repeat 0px 0px;
+  background: url("../images/banner.jpg")no-repeat 0px 0px;
   background-size: cover;
   min-height: 140px;
   text-align:center;
@@ -478,11 +478,11 @@ span.glyphicon.glyphicon-user:hover {
     text-transform: capitalize;
     font-family: 'FugazOne-Regular';
     margin-bottom: 0.5em;
-	color: #a9a685;
+	color: #080808;
 }
 .about-grid h4 {
   font-size: 1.5em;
-    color: #ff9541;
+    color: #080808;
     font-family: 'FugazOne-Regular';
 	margin-bottom: 0.5em;
 }
@@ -521,7 +521,7 @@ span.glyphicon.glyphicon-user:hover {
 }
 .history h5,.history1 h5,.history2 h5,.history3 h5 {
   font-size: 1.1em;
-    color: #ff9541;
+  color: #080808;
 	margin-bottom: 0.5em;
 	font-family: 'FugazOne-Regular'
 }
