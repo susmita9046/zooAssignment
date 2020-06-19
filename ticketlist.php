@@ -26,9 +26,10 @@
                 <div class="row">
                   <br>
                   <!-- <div class="col-xl-6"><h4 class="text-muted mb-2">Your Booking Details</h4></div> -->
-                  <h2>Your Booking Details</h2> 
+                    
                   <br><br>
                 </div>
+                <h2>Your Booking Details</h2> <br>
                 <table class="table table-striped bg-light">
                   
                   <thead>

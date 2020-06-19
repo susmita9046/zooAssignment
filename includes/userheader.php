@@ -22,10 +22,10 @@ $user = $user->fetch();
 </head>
 <body>
 	<!--header-->
-	<div class="header" style="background-color: lightblue !important">
+	<div class="header" style="background-color: #eee  !important">
 		<div class="container">
-			<div class="header-top" style="background-color: lightblue">
-				<nav class="navbar navbar-default" style="background-color: lightblue; border: none;">
+			<div class="header-top" style="background-color: #eee">
+				<nav class="navbar navbar-default" style="background-color: #eee; border: none;">
 					<div class="container">
 						
 						<!-- Brand and toggle get grouped for better mobile display -->
@@ -37,7 +37,9 @@ $user = $user->fetch();
 								<span class="icon-bar"></span>
 							</button>
 							<div class="navbar-brand">
-								<h1><a href="index.php">zoo planet</a></h1>
+								<a href="index.php">
+								<img src="images/logo.jpg" style="width: 70px; height: 65px; border-radius: 50%; margin-left: -15px;">
+								</a>
 							</div>
 						</div>
 

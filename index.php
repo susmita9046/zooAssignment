@@ -56,7 +56,7 @@ if(isset($_POST['keyword'])){
 	<div class="welcome">
 		<div class="content">
 			<div class="container">
-				<h2>welcome to zoo planet</h2>
+				<h2>welcome to Claybrook Zoo</h2>
 				<div class="filtersec">
 		            <div class="col-md-9" >
 		             	<ul class="categorylist">
@@ -70,7 +70,7 @@ if(isset($_POST['keyword'])){
 		            </div>
             	<div class ="col-md-3">
 					<form method="post" action="">
-		    			<input class="form-control" type="text" name="keyword" placeholder="Search by Name">
+		    			<input class="form-control" type="text" name="keyword" placeholder="Search Here">
 					</form>
         		</div>
     		</div>

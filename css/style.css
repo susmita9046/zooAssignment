@@ -384,8 +384,8 @@ span.glyphicon.glyphicon-user:hover {
     margin-top: 3em;
 }
 .specials-section {
-  padding: 4em 0;
-  background: #111227;
+  padding: 1em 0;
+  background: #3b3d5d;
 }
 .specials-section h3 {
 	font-size: 3em;
@@ -474,7 +474,7 @@ span.glyphicon.glyphicon-user:hover {
   padding: 4em 0;
 }
 .about-grid h3{
-	font-size: 3em;
+	font-size:2em;
     text-transform: capitalize;
     font-family: 'FugazOne-Regular';
     margin-bottom: 0.5em;

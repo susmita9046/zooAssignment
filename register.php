@@ -36,13 +36,13 @@ if(isset($_POST['register'])){
 <?php require 'includes/header.php'; ?>
 	
 <!--header-->
- <div class="content">
+ <div class="content" style="background-color: #fbf7ef;>
 	<div class="contact">
 		<div class="container">
 
 			 <style type="text/css">
       body {
-        background: #eee;
+        background:#fbf7ef;
       }
       .wrapper {
         margin: 80px;
@@ -65,11 +65,8 @@ if(isset($_POST['register'])){
         padding: 10px;
       }
     </style>
-			<!-- <div class="contact_top" style="padding: 0;">
-	 			<div class="col-md-5 contact_left" style="float: none; margin: 0 auto"> -->
-		 			<!-- <h3>Register Here</h3> -->
-
-				  	<form class="form-signin" autocomplete="off" method="post" action="">
+			<br>
+	  	<form class="form-signin" autocomplete="off" method="post" action="">
                     <h3 class="form-signin-heading text-center">Register</h3><br>
                     <input type="text" class="form-control" name="username" placeholder="Username" required="" autofocus="" />
                     <br>
@@ -85,6 +82,7 @@ if(isset($_POST['register'])){
 </form>
 		 		</div>
 			</div>	
+      <br><br>
 			<div class="clearfix"> </div>
 		</div>
 	</div>

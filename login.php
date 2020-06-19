@@ -27,12 +27,12 @@ if(isset($_POST['login'])){
 <?php require 'includes/header.php'; ?>
 	
 <!--header-->
-<div class="content">
+<div class="content" style="background-color: #fbf7ef;>
 	<div class="contact">
 	<div class="container">
 	 <style type="text/css">
-      body {
-        background: #eee;
+      body {;
+        background: #fbf7ef;
       }
       .wrapper {
         /*margin: 80px;*/
@@ -57,7 +57,7 @@ if(isset($_POST['login'])){
     </style>
 			<!-- <div class="contact_top" style="padding: 0;">
 	 			<div class="col-md-5 contact_left" style="float: none; margin: 0 auto"> -->
-		 			
+		 			<br><br>
 				  	<div class="wrapper">
                     <form class="form-signin" autocomplete="off" method="post" action="">
                     <h3 class="form-signin-heading text-center">User Login Panel</h3>
@@ -67,7 +67,7 @@ if(isset($_POST['login'])){
                     </form>
                     </div>
 		 		</div>
-			</div>	
+			</div>	<br><br><br>
 			<div class="clearfix"> </div>
 		</div>
 	</div>

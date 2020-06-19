@@ -12,10 +12,10 @@
 				<div class="col-md-3 specials1">
 					<h3> details</h3>
 					<ul>
-						<li><a href="about.html">About Us</a></li>
+						<li><a href="about.php">About Us</a></li>
 						<li><a href="#">Privacy Policy</a></li>
 						<li><a href="#">Terms & Conditions</a></li>
-						<li><a href="contact.html">SiteMap</a></li>
+						<li><a href="contact.php">SiteMap</a></li>
 					</ul>
 				</div>
 				<div class="col-md-3 specials1">
@@ -35,7 +35,7 @@
 						<p>Glasgow,Le 99 Pr 45.</p>
 						<p>Telephone : +1 800 603 6035</p>
 						<p>FAX : +1 800 889 9898</p>
-						<p>Email : <a href="mailto:example@mail.com">example@mail.com</a></p>
+						<p>Email : <a href="claybrook@gmail.com">claybrook@gmail.com</a></p>
 					</address>
 				</div>
 				<div class="clearfix"></div>

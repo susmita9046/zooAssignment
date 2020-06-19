@@ -18,10 +18,10 @@
 </head>
 <body>
 	<!--header-->
-	<div class="header" style="">
+	<div class="header" style="background-color: #eee  !important">
 		<div class="container">
-			<div class="header-top" style="">
-				<nav class="navbar navbar-default" style="">
+			<div class="header-top" style="background-color: #eee">
+				<nav class="navbar navbar-default" style="background-color: #eee; border: none;">
 					<div class="container">
 						
 						<!-- Brand and toggle get grouped for better mobile display -->
@@ -33,12 +33,9 @@
 								<span class="icon-bar"></span>
 							</button>
 							<div class="navbar-brand">
+								<a href="index.php">
 								<img src="images/logo.jpg" style="width: 70px; height: 65px; border-radius: 50%; margin-left: -15px;">
-								<!-- <div class="imgg">
-									<h1><a href="index.php">
-									  <img src="images/logo.jpg" style="width: 70px;">
-									</a></h1>
-								</div> -->
+								</a>
 							</div>
 						</div>
 

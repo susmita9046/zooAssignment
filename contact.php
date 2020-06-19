@@ -27,12 +27,12 @@ if(isset($_POST['save'])){
 		<div class="container">
 			<div class="contact-detail">
 				<h3>Contact Info</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit velit justo.</p>
+				<!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit velit justo.</p> -->
       			<address>
-					 <p>Email : <a href="mailto:example@mail.com">example@mail.com</a></p>
-					 <p>Phone : 1.306.222.4545</p>
+					 <p>Email : <a href="claybrookzoo@mail.com">claybrookzoo@gmail.com</a></p>
+					 <p>Phone : 2.234.444.444</p>
 					 <p>222 2nd Ave South</p>
-					 <p>Saskabush, SK   S7M 1T6</p>
+					 <p>Northwest,England 1T6</p>
 				</address>
 			</div>	
 		</div>
@@ -43,7 +43,7 @@ if(isset($_POST['save'])){
 	<div class="row">
 		<div class="col-md-6 contact_left">
  			<h3>Contact Form</h3>
- 			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt dolor et tristique bibendum. Aenean sollicitudin vitae dolor ut posuere.</p>
+ 			<!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt dolor et tristique bibendum. Aenean sollicitudin vitae dolor ut posuere.</p> -->
 
 			<form class="form-signin"  method="POST" action="" class="col-xl-6" enctype="multipart/form-data">
         		<div class="form_details">
