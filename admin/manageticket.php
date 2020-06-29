@@ -1,9 +1,9 @@
 <?php
-  session_start();
+  require 'db/conn.php';
   if(!isset($_SESSION['AUserId'])){
     header('Location:login.php');
   }
-  require 'db/conn.php';
+  
   $tickets = $pdo->prepare("select ticket.*, user.username   
                           from ticket 
                           join user on ticket.userId = user.u_id

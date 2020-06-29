@@ -1,9 +1,9 @@
 <?php
-  session_start();
+ require 'db/conn.php';
   if(!isset($_SESSION['AUserId'])){
   header('Location:login.php');
   }
-  require 'db/conn.php';
+  
 
   $animal = $pdo->prepare("select animals.*, animal_category.type as categoryName
                             from animals 

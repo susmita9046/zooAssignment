@@ -24,8 +24,7 @@ if(isset($_POST['keyword'])){
 	<div class="header-banner">
 		<div class="container">
 			<div class="head-banner">
-				<h3>Dave Zucconi Conservation Center</h3>
-				<p>Donec dui velit, hendrerit id pharetra nec, posuere porta nisl. Donec magna nulla, commodo in ultrices faucibus lacus aliquet.Donec dui velit, hendrerit id pharetra nec</p>
+				<h3>Claybrook Zoo </h3>
 			</div>
 			<div class="banner-grids">
 				<!-- <div class="col-md-8 banner-grid">

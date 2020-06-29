@@ -1,9 +1,10 @@
 <?php
-session_start();
+require 'db/conn.php';
+
 if(!isset($_SESSION['AUserId'])){
         header('Location:login.php');
 }
-require 'db/conn.php';
+
 $animalTypeList = $pdo->prepare('SELECT * FROM animal_category');
 $animalTypeList->execute();
 
@@ -13,12 +14,24 @@ if(isset($_GET['eid'])){
     $row = $animals->fetch();
 }
 if(isset($_POST['update'])){
+    if(isset($_FILES['image'])){
+            $image = $_FILES['image']['name'];
+            $tmp_loc = $_FILES['image']['tmp_name'];
+            $perm_loc = '../uploads/' . $image;
+            copy($tmp_loc, $perm_loc);
+            unlink($uploaded_dir.$row[row]);
+            move_uploaded_file($tmp_loc,$upload_dir.$row);
+    }
+    else{
+         $image = '';
+    }
     $stmt = $pdo->prepare("UPDATE animals SET animalcategoryId =:animalcategoryId,species_name =:species_name,name =:name,date_of_birth=:date_of_birth,gender =:gender,avg_life_span =:avg_life_span,species_category =:species_category,dietary =:dietary,natural_habitat =:natural_habitat,global_population =:global_population,date_of_joined =:date_of_joined,dimension =:dimension,image =:image,gestational_period =:gestational_period,mammal_category =:mammal_category,avg_body_temp =:avg_body_temp,reproduction_type =:reproduction_type,avg_clutch_size =:avg_clutch_size,avg_offspring =:avg_offspring,nest_const_metd =:nest_const_metd,aclutch_size =:aclutch_size,wing_span =:wing_span,ability_to_fly =:ability_to_fly,birds_color_variant =:birds_color_variant,fish_avg_body_temp =:fish_avg_body_temp,water_type =:water_type,fishes_color_variant =:fishes_color_variant
 
     WHERE a_id = :a_id");
     unset($_POST['update']);
+    echo '<pre>'; print_r($_POST); die();
     $stmt->execute($_POST);
-    header('Location:animals.php?success=animals Updated Successfully');
+    // header('Location:animals.php?success=animals Updated Successfully');
     }
 ?>
 <!doctype html>
@@ -39,7 +52,6 @@ if(isset($_POST['update'])){
     </style>
   </head>
   <body>
-    
     <!-- navbar -->
     <nav class="navbar navbar-expand-md navbar-light">
       <button class="navbar-toggler ml-auto mb-2 bg-light" type="button" data-toggle="collapse" data-target="#myNavbar">
@@ -126,11 +138,7 @@ if(isset($_POST['update'])){
                                 Ability to Fly : <input checked="" class="form-control grey-glow" type="radio" name="ability_to_fly" value="Yes" selected="selected"> Yes 
                                 <input class="form-control grey-glow" type="radio" name="ability_to_fly" value="No"> No<br>
                                 Color Variant:
-                               <!--  <select name="birds_color_variant" class="form-control grey-glow">
-                                    <option value="Red">Red</option>
-                                    <option value="Green">Green</option>
-                                    <option value="Blue">Blue</option>
-                                </select> -->
+                        
                                  <input class="form-control grey-glow" type="text" name="birds_color_variant" value="<?php echo $row['birds_color_variant'];?>"><br>
                                 <br>                            
                             </div>
@@ -139,24 +147,15 @@ if(isset($_POST['update'])){
                                 <br>
                                 Average Body Temperature : <input class="form-control grey-glow" type="text" name="fish_avg_body_temp" value="<?php echo $row['fish_avg_body_temp'];?>"><br>
                                Water Type:
-                              <!--   <select name="water_type" class="form-control grey-glow">
-                                    <option value="Salty">Salty</option>
-                                    <option value="Fresh">Fresh</option>
-                                </select> -->
 
                                 <input class="form-control grey-glow" type="text" name="water_type" value="<?php echo $row['water_type'];?>"><br>
                                 
                                 Color Variant
-                               <!--  <select name="fishes_color_variant" class="form-control grey-glow">
-                                    <option value="Red">Red</option>
-                                    <option value="Green">Green</option>
-                                    <option value="Blue">Blue</option>
-                                </select> -->
                                   <input class="form-control grey-glow" type="text" name="fishes_color_variant" value="<?php echo $row['fishes_color_variant'];?>"><br>
                                 
                             </div>
                         </div>
-                        <!-- <input name="type" class="form-control">     -->
+                        
                         <br>
                         <label>Species Name</label>
                         <input name="species_name" class="form-control" value="<?php echo $row['species_name'];?>">
@@ -164,9 +163,6 @@ if(isset($_POST['update'])){
                         <label>Animals Given Name</label>
                         <input name="name" class="form-control" value="<?php echo $row['name'];?>">
                         <br>
-
-                       <!--  <label>Date Of Birth Animal</label>
-                        <input type=“date” name="date_of_birth" class="form-control"> -->
                         <label>Date Of Birth Animal</label>
                         <input name="date_of_birth" class="form-control" value="<?php echo $row['date_of_birth'];?>">
                         <br>
@@ -199,7 +195,8 @@ if(isset($_POST['update'])){
                         <input name="dimension" class="form-control" value="<?php echo $row['dimension'];?>">
                         <br>
                         <label>Add Image</label>
-                        <input type="file" class="form-control-file" name="image" value="<?php echo $row['image'];?>">
+                        <img src="../uploads/<?php echo $row['image'];?>">
+                        <input type="file" class="form-control-file">
                         <br>
                     </div>
                     <div class="form-group">

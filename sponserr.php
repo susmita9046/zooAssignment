@@ -77,8 +77,8 @@ if(isset($_POST['save'])){
               <br>
               <label>Existing Customer</label>
               <br><br>
-              <input  type="radio" checked="" name="exiting_customer" value="1"/> Yes 
-              <input  type="radio" name="exiting_customer" value="0"/> No <br> <br>
+              <input  type="radio" checked="" name="exiting_customer" value="yes"/> Yes 
+              <input  type="radio" name="exiting_customer" value="No"/> No <br> <br>
               <label>Primary Phone Number</label>
               <input name="primary_phone_number" class="form-control" required="" autofocus="">
 

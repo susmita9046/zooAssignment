@@ -1,9 +1,9 @@
 <?php
-  session_start();
+  require 'db/conn.php';
   if(!isset($_SESSION['AUserId'])){
   header('Location:login.php');
   }
-  require 'db/conn.php';
+  
   $sponsorList = $pdo->prepare("select sponshership_form.*, user.username, animals.name as animalName ,sponsership.yearly_fee   as yearlyFee  
                               from sponshership_form 
                               join user on sponshership_form.userId = user.u_id

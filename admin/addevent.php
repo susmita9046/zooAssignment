@@ -1,9 +1,9 @@
 <?php
-session_start();
+require 'db/conn.php';
     if(!isset($_SESSION['AUserId'])){
         header('Location:login.php');
     }
-require 'db/conn.php';
+
 $eventlist = $pdo->prepare('SELECT * FROM event');
 $eventlist->execute();
 $image ="";

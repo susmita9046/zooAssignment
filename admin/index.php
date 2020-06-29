@@ -1,9 +1,9 @@
 <?php
-  session_start();
+  require 'db/conn.php';
   if(!isset($_SESSION['AUserId'])){
     header('Location:login.php');
   }
-   require 'db/conn.php';
+   
   // $admins = $pdo->prepare('select * from user where type = 2');
   // $admins->execute();
   // $adminCount = $admins->rowCount();

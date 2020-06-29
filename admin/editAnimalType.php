@@ -1,9 +1,9 @@
 <?php
-session_start();
+require 'db/conn.php';
 if(!isset($_SESSION['AUserId'])){
         header('Location:login.php');
 }
-require 'db/conn.php';
+
     if(isset($_GET['eid'])){
     $animal_category = $pdo->prepare('SELECT * FROM animal_category WHERE ac_id = :eid');
     $animal_category->execute($_GET);

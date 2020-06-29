@@ -1,11 +1,8 @@
 <?php
-  session_start();
+  require 'db/conn.php';
   if(!isset($_SESSION['AUserId'])){
   header('Location:login.php');
   }
-  require 'db/conn.php';
-  // $animal = $pdo->prepare("select * from animals");
-  // type
     $eventList = $pdo->prepare("select * from event");
     $eventList->execute();
 

@@ -1,9 +1,9 @@
 <?php
-    session_start();
+    require 'db/conn.php';
     if(!isset($_SESSION['AUserId'])){
         header('Location:login.php');
     }
-    require 'db/conn.php';
+    
     $Users = $pdo->prepare("select * from user where role = 0 ");
     $Users->execute();
     if(isset($_GET['id'])){ 

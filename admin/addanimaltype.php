@@ -1,9 +1,9 @@
 <?php
-session_start();
+require 'db/conn.php';
 if(!isset($_SESSION['AUserId'])){
         header('Location:login.php');
 }
-require 'db/conn.php';
+
 if(isset($_POST['save'])){
     $stmt = $pdo->prepare("insert into animal_category(type,description) values(:type, :description)");
         // $_POST['userId']= $_SESSION['AUserId'];

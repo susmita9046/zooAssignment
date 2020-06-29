@@ -43,7 +43,6 @@ if(isset($_POST['save'])){
 	<div class="row">
 		<div class="col-md-6 contact_left">
  			<h3>Contact Form</h3>
- 			<!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tincidunt dolor et tristique bibendum. Aenean sollicitudin vitae dolor ut posuere.</p> -->
 
 			<form class="form-signin"  method="POST" action="" class="col-xl-6" enctype="multipart/form-data">
         		<div class="form_details">

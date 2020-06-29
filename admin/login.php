@@ -1,9 +1,10 @@
 <?php 
-  session_start();
+  // session_start();
+ require 'db/conn.php';
   if(isset($_SESSION['AUserId'])){
     header('Location:index.php');
   }
-  require 'db/conn.php';
+  // require 'db/conn.php';
   if(isset($_POST['login'])){
     $stmt = $pdo->prepare('SELECT * FROM user WHERE email = :email and role =:role');
     $criteria = [
