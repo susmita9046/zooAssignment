@@ -1,4 +1,4 @@
-<?php
+s<?php
 require 'db/conn.php';
 
 if(!isset($_SESSION['AUserId'])){
@@ -14,24 +14,34 @@ if(isset($_GET['eid'])){
     $row = $animals->fetch();
 }
 if(isset($_POST['update'])){
-    if(isset($_FILES['image'])){
+        $animalId = $_POST['a_id'];
+        $animals = $pdo->prepare("select * from animals where a_id = '$animalId'");
+        $animals->execute();
+        $animals = $animals->fetch();
+
+ if(!empty($_FILES['image']['name'])){
+            if(!empty($animals['image'])){
+                unlink('uploads/' . $animals['image']);
+            }
+
             $image = $_FILES['image']['name'];
             $tmp_loc = $_FILES['image']['tmp_name'];
-            $perm_loc = '../uploads/' . $image;
+            $perm_loc = 'uploads/' . $image;
             copy($tmp_loc, $perm_loc);
-            unlink($uploaded_dir.$row[row]);
-            move_uploaded_file($tmp_loc,$upload_dir.$row);
-    }
-    else{
-         $image = '';
-    }
-    $stmt = $pdo->prepare("UPDATE animals SET animalcategoryId =:animalcategoryId,species_name =:species_name,name =:name,date_of_birth=:date_of_birth,gender =:gender,avg_life_span =:avg_life_span,species_category =:species_category,dietary =:dietary,natural_habitat =:natural_habitat,global_population =:global_population,date_of_joined =:date_of_joined,dimension =:dimension,image =:image,gestational_period =:gestational_period,mammal_category =:mammal_category,avg_body_temp =:avg_body_temp,reproduction_type =:reproduction_type,avg_clutch_size =:avg_clutch_size,avg_offspring =:avg_offspring,nest_const_metd =:nest_const_metd,aclutch_size =:aclutch_size,wing_span =:wing_span,ability_to_fly =:ability_to_fly,birds_color_variant =:birds_color_variant,fish_avg_body_temp =:fish_avg_body_temp,water_type =:water_type,fishes_color_variant =:fishes_color_variant
+        }
+        else{
+            $image = $animals['image'];
+        }
+
+    $stmt = $pdo->prepare("UPDATE animals SET animalcategoryId =:animalcategoryId,species_name =:species_name,name =:name,date_of_birth=:date_of_birth,gender =:gender,avg_life_span =:avg_life_span,species_category =:species_category,dietary =:dietary,natural_habitat =:natural_habitat,global_population =:global_population,date_of_joined =:date_of_joined,dimension =:dimension,image =:image,gestational_period =:gestational_period,mammal_category =:mammal_category,avg_body_temp =:avg_body_temp,reproduction_type =:reproduction_type,avg_clutch_size =:avg_clutch_size,avg_offspring =:avg_offspring,nest_const_metd =:nest_const_metd,aclutch_size =:aclutch_size,wing_span =:wing_span,ability_to_fly =:ability_to_fly,birds_color_variant =:birds_color_variant,fish_avg_body_temp =:fish_avg_body_temp,water_type =:water_type,fishes_color_variant =:fishes_color_variant,image=
+        :image
 
     WHERE a_id = :a_id");
     unset($_POST['update']);
-    echo '<pre>'; print_r($_POST); die();
+    $_POST['image'] = $image;
+    // echo '<pre>'; print_r($_POST); die();
     $stmt->execute($_POST);
-    // header('Location:animals.php?success=animals Updated Successfully');
+    header('Location:animals.php?success=animals Updated Successfully');
     }
 ?>
 <!doctype html>
@@ -43,7 +53,7 @@ if(isset($_POST['update'])){
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <title>Add Animal</title>
+    <title>Edit Animal</title>
     <style type="text/css">
         .animalTypeRelatedFields{ margin-left: 5%;  }
         #mammals, #reptiles, #birds, #fishes{
@@ -194,9 +204,9 @@ if(isset($_POST['update'])){
                         <label>Animal dimension(height/weight)</label>
                         <input name="dimension" class="form-control" value="<?php echo $row['dimension'];?>">
                         <br>
-                        <label>Add Image</label>
+                        <label>Edit Image</label>
                         <img src="../uploads/<?php echo $row['image'];?>">
-                        <input type="file" class="form-control-file">
+                        <input type="file" class="form-control-file" name="image>
                         <br>
                     </div>
                     <div class="form-group">
