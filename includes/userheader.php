@@ -35,7 +35,7 @@ $user = $user->fetch();
 								<span class="icon-bar"></span>
 							</button>
 							<div class="navbar-brand">
-								<a href="index.php">
+								<a href="userhomepage.php">
 								<img src="images/logo.jpg" style="width: 70px; height: 65px; border-radius: 50%; margin-left: -15px;">
 								</a>
 							</div>
@@ -48,10 +48,10 @@ $user = $user->fetch();
 								<li><a href="about.php">About</a></li>
 								<li><a href="contact.php">Contact</a></li>
 								<?php if(isset($_SESSION['UserId'])){
-									$userId = $_SESSION['UserId'];
-									$user = $pdo->prepare("select * from user where u_id = '$userId'");
-									$user->execute();
-									$user = $user->fetch();
+									// $userId = $_SESSION['UserId'];
+									// $user = $pdo->prepare("select * from user where u_id = '$userId'");
+									// $user->execute();
+									// $user = $userr->fetch();
 									// print_r($user); die();
 									?>
 									<li class="dropdown">

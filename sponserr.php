@@ -1,9 +1,10 @@
 <?php
-session_start();
+// session_start();
+require 'admin/db/conn.php';
 if(!isset($_SESSION['UserId'])){
   header('Location:login.php');
 }
-require 'admin/db/conn.php';
+
 $sponsercat = $pdo->prepare("select * from sponsership");
 $sponsercat->execute();
 
@@ -37,6 +38,9 @@ if(isset($_POST['save'])){
       }
       .wrapper {
         /*margin: 80px;*/
+      }
+       .contact{
+        background:#fbf7ef;
       }
       .form-signin {
         max-width: 380px;

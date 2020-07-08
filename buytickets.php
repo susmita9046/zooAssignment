@@ -1,9 +1,10 @@
 <?php
-session_start();
+// session_start();
+require 'admin/db/conn.php';
 if(!isset($_SESSION['UserId'])){
 header('Location:login.php');
 }
-require 'admin/db/conn.php';
+
 // $ticket = $pdo->prepare('SELECT * FROM ticket');
 // $ticket->execute();
 
@@ -26,6 +27,9 @@ if(isset($_POST['save'])){
   }
   .wrapper {
     /*margin: 80px;*/
+  }
+  .contact{
+    background:#fbf7ef;
   }
   .form-signin {
     max-width: 380px;
@@ -62,7 +66,7 @@ if(isset($_POST['save'])){
 </script>
 
 <div class="content">
-    <div class="contact">
+    <div class="contact" background:#fbf7ef>
       <div class="container">
         <div class="wrapper">
           <div class="container">
